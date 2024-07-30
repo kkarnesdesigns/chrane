@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
         {
           "type": "paneldynamic",
           "name": "Serving Line Details",
-          "title": "Serving Line Details",
           "clearIfInvisible": "onComplete",
           "isRequired": true,
           "templateElements": [
@@ -128,59 +127,55 @@ document.addEventListener("DOMContentLoaded", function() {
               "title": "Name of Serving Line"
             },
             {
-              "type": "matrixdropdown",
-              "name": "TypeofServiceLine",
-              "title": "Types of Service Lines",
-              "columns": [
+              "type": "panel",
+              "name": "panel1",
+              "colSpan": 4,
+              "elements": [
                 {
-                  "name": "Hot Service",
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Hot Service",
                   "title": "Hot Service",
-                  "cellType": "boolean"
+                  "isRequired": true
                 },
                 {
-                  "name": "Column 3",
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Cold Service",
+                  "startWithNewLine": false,
                   "title": "Cold Service",
-                  "cellType": "boolean"
+                  "isRequired": true
                 },
                 {
-                  "name": "Hot/Cold Service",
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Hot/Cold Service",
                   "title": "Hot/Cold Service",
-                  "cellType": "boolean"
+                  "isRequired": true
                 },
                 {
-                  "name": "Beverage Service",
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Beverage Service",
+                  "startWithNewLine": false,
                   "title": "Beverage Service",
-                  "cellType": "boolean"
+                  "isRequired": true
                 },
                 {
-                  "name": "Ice Service",
-                  "cellType": "boolean"
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Ice Service",
+                  "title": "Ice Service",
+                  "isRequired": true
                 },
                 {
-                  "name": "Other",
-                  "title": "Other",
-                  "cellType": "boolean"
-                }
-              ],
-              "choices": [
-                1,
-                2,
-                3,
-                4,
-                5
-              ],
-              "rows": [
-                {
-                  "value": "Type of Service for Line",
-                  "text": "Does this line have the following?"
+                  "type": "boolean",
+                  "name": "Type of Service for Line.Other Service",
+                  "startWithNewLine": false,
+                  "title": "Other Service",
+                  "isRequired": true
                 }
               ]
             },
             {
               "type": "panel",
               "name": "HotServicePanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot Service} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot Service} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot Service} = true",
               "title": "Hot Service",
               "elements": [
                 {
@@ -1108,7 +1103,7 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "CombinedHotColdServicePanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot/Cold Service} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot/Cold Service} = true",
               "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot/Cold Service} = true",
               "title": "Combined Hot/Cold Service",
               "elements": [
@@ -1533,8 +1528,7 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "BeverageServicePanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Beverage Service} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Beverage Service} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true",
               "title": "Beverage Service",
               "elements": [
                 {
@@ -1772,8 +1766,7 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "IceServicePanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Ice Service} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Ice Service} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Ice Service} = true",
               "title": "Ice Service Components",
               "elements": [
                 {
@@ -1889,8 +1882,7 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "OtherServicesPanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Other} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Other} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Other Service} = true",
               "title": "Other Services",
               "elements": [
                 {
@@ -2523,6 +2515,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           ],
           "templateTabTitle": "{panelIndex}. {panel.NameofServingLine}",
+          "tabTitlePlaceholder": "{panelIndex}. New Panel",
           "newPanelPosition": "next",
           "panelCount": 1,
           "minPanelCount": 1,

@@ -109,6 +109,8 @@ document.addEventListener("DOMContentLoaded", function() {
       // Initialize and render a simple survey to test the theme
       const surveyJSON = {
   "title": "Serving Line Intake Form",
+  "completedHtml": "<h3>Thank you for completing the Serving Line Details</h3>",
+  "loadingHtml": "<h3>Loading Serving Line Details form...</h3>",
   "pages": [
     {
       "name": "HotService",
@@ -2536,8 +2538,9 @@ document.addEventListener("DOMContentLoaded", function() {
   ],
   "sendResultOnPageNext": true,
   "showNavigationButtons": "both",
-  "showTOC": true,
+  "showTitle": false,
   "clearInvisibleValues": "onHiddenContainer",
+  "previewText": "Review Before Submission",
   "showPreviewBeforeComplete": "showAllQuestions"
 }
 

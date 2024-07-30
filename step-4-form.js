@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
         {
           "type": "paneldynamic",
           "name": "Serving Line Details",
-          "title": "Serving Line Details",
           "clearIfInvisible": "onComplete",
           "isRequired": true,
           "templateElements": [
@@ -2523,6 +2522,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           ],
           "templateTabTitle": "{panelIndex}. {panel.NameofServingLine}",
+          "tabTitlePlaceholder": "{panelIndex}. New Panel",
           "newPanelPosition": "next",
           "panelCount": 1,
           "minPanelCount": 1,

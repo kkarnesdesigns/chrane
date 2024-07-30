@@ -2523,6 +2523,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           ],
           "templateTabTitle": "{panelIndex}. {panel.NameofServingLine}",
+          "tabTitlePlaceholder": "{panelIndex}. New Panel",
           "newPanelPosition": "next",
           "panelCount": 1,
           "minPanelCount": 1,
@@ -2543,7 +2544,6 @@ document.addEventListener("DOMContentLoaded", function() {
   "previewText": "Review Before Submission",
   "showPreviewBeforeComplete": "showAllQuestions"
 }
-
       const survey = new Survey.Model(surveyJSON);
 
       // Apply the custom theme to the survey instance

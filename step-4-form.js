@@ -2553,6 +2553,11 @@ document.addEventListener("DOMContentLoaded", function() {
   survey.onAfterRenderQuestion.add(function (survey, options) {
             var questionElement = options.htmlElement;
 
+            // Skip applying the custom layout for questions within dynamic panels
+            if (options.question.isContentElement || options.question.getType() === "paneldynamic") {
+                return;
+            }
+
             // Create a new container for the custom layout
             var surveyRow = document.createElement("div");
             surveyRow.className = "survey-row";
@@ -2581,7 +2586,6 @@ document.addEventListener("DOMContentLoaded", function() {
             questionElement.innerHTML = "";
             questionElement.appendChild(surveyRow);
         });
-       
 
       survey.render("surveyContainer");
     } else {

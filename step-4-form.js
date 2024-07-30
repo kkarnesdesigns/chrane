@@ -1,6 +1,4 @@
-<div id="surveyContainer" class="custom-survey-container" wized="construction-details_form"></div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     if (typeof Survey !== 'undefined') {
       console.log("SurveyJS is loaded");
 
@@ -2587,4 +2585,3 @@
       console.error("SurveyJS is not loaded");
     }
   });
-</script>

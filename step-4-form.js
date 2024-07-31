@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         {
           "type": "paneldynamic",
           "name": "Serving Line Details",
+          "description": "PLEASE READ:\n\n1. If you have a tab/serving line selected and press \"Add New Serving Line\", it will create a direct copy of the current tab you're in. This means all selections, all answers, etc. will be copied into the new tab/serving line.\n\n2. If you DO NOT want there to be copied information, please immediately create the number of serving lines you'll be adding, and THEN fill out the information.",
           "clearIfInvisible": "onComplete",
           "isRequired": true,
           "templateElements": [
@@ -169,6 +170,13 @@ document.addEventListener("DOMContentLoaded", function() {
                   "startWithNewLine": false,
                   "title": "Other Service",
                   "isRequired": true
+                },
+                {
+                  "type": "boolean",
+                  "name": "Type of Service for Line.AdditionalSupport",
+                  "title": "Additional Support Equipment Needs",
+                  "description": "(ex. refrigerated merchandisers, speed ovens, panini presses, deep cook chambers, etc.)",
+                  "isRequired": true
                 }
               ]
             },
@@ -177,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "name": "HotServicePanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot Service} = true",
               "title": "Hot Service",
+              "state": "expanded",
               "elements": [
                 {
                   "type": "panel",
@@ -201,7 +210,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeIndividualHotWellsPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Mod-U-Serve Individual 12\" x 20\" Hot Wells'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells']",
+                  "title": "Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -256,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthHotWells",
-                      "visibleIf": "{TrayStorageFlatTopRequiredHotWells} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredHotWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -271,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthHotWells",
-                      "visibleIf": "{TrayPassFlatTopRequiredHotWells} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredHotWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -312,7 +323,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeBulkBainMarieHotWellPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Mod-U-Serve Bulk Bain-Marie Style Hot Well'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot Well']",
+                  "title": "Mod-U-Serve Bulk Bain-Marie Style Hot Well",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -358,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthBulkHotWell",
-                      "visibleIf": "{TrayStorageFlatTopRequiredBulkHotWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredBulkHotWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -373,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthBulkHotWell",
-                      "visibleIf": "{TrayPassFlatTopRequiredBulkHotWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredBulkHotWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -414,7 +427,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CookTekInductionWaterlessHotWellsPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'CookTek Induction Waterless Hot Wells (provided by MUS)'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['CookTek Induction Waterless Hot Wells (provided by MUS)']",
+                  "title": "Cook Tek Induction Waterless Hot Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -459,7 +474,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthCookTek",
-                      "visibleIf": "{TrayStorageFlatTopRequiredCookTek} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredCookTek} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -474,7 +489,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthCookTek",
-                      "visibleIf": "{TrayPassFlatTopRequiredCookTek} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredCookTek} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -520,7 +535,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "AltoShaamWaterlessHotWellsPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Alto-Shaam Waterless Hot Wells (provided by MUS)'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Alto-Shaam Waterless Hot Wells (provided by MUS)']",
+                  "title": "Alto Shaam Waterless Hot Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -565,7 +582,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthAltoShaam",
-                      "visibleIf": "{TrayStorageFlatTopRequiredAltoShaam} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredAltoShaam} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -580,7 +597,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthAltoShaam",
-                      "visibleIf": "{TrayPassFlatTopRequiredAltoShaam} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredAltoShaam} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -626,7 +643,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HotFoodSheetPanUnitsPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Hot Food Sheet Pan Units'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Hot Food Sheet Pan Units']",
+                  "title": "Hot Food Sheet Pan Units",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -641,11 +660,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponents",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvided} = 'Elevated' or {Serving Line Details[0].HeightUnitsProvided} = 'Both'",
                       "title": "Describe Located above what Components?"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterial",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvided} = 'Elevated'",
                       "title": "Select Overshelf Material",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Heated Sheet Pan Unit (Standard)",
@@ -657,7 +678,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "IfElevated",
-                      "visibleIf": "{HeightUnitsProvided} contains 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvided} = 'Elevated'",
                       "title": "If Elevated",
                       "choices": [
                         "One (1) Elevated Tier",
@@ -695,7 +716,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthSheetPan",
-                      "visibleIf": "{TrayStorageFlatTopRequiredSheetPan} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -710,12 +731,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthSheetPan",
-                      "visibleIf": "{TrayPassFlatTopRequiredSheetPan} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvided} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvided} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
                       "choices": [
                         "Yes",
@@ -725,6 +747,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvided} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvided} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
                       "choices": [
                         "None",
@@ -751,7 +774,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HeatedMailSlotMerchandiserPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Heated Mail Slot Merchandiser'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Heated Mail Slot Merchandiser']",
+                  "title": "Heated Mail Slot Merchandiser",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -792,7 +817,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherHotComponentPanel",
-                  "visibleIf": "{HotServiceComponentTypes} contains 'Other Hot Component'",
+                  "visibleIf": "{Serving Line Details[0].HotServiceComponentTypes} allof ['Other Hot Component']",
+                  "title": "Other Hot Component",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "comment",
@@ -809,20 +836,11 @@ document.addEventListener("DOMContentLoaded", function() {
               "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Column 3} = true",
               "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Column 3} = true",
               "title": "Cold Service",
+              "state": "expanded",
               "elements": [
-                {
-                  "type": "radiogroup",
-                  "name": "ColdServiceComponentsRequired",
-                  "title": "Are Cold Service Components Required?",
-                  "choices": [
-                    "Yes",
-                    "No"
-                  ]
-                },
                 {
                   "type": "panel",
                   "name": "ColdServiceComponentsPanel",
-                  "visibleIf": "{ColdServiceComponentsRequired} = 'Yes'",
                   "elements": [
                     {
                       "type": "checkbox",
@@ -840,7 +858,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeColdWellsPanel",
-                  "visibleIf": "{ColdServiceComponentTypes} contains 'Mod-U-Serve Cold Wells'",
+                  "visibleIf": "{Serving Line Details[0].ColdServiceComponentTypes} allof ['Mod-U-Serve Cold Wells']",
+                  "title": "Mod-U-Serve Cold Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -885,7 +905,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthColdWell",
-                      "visibleIf": "{TrayStorageFlatTopRequiredColdWell} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -900,7 +920,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthColdWell",
-                      "visibleIf": "{TrayPassFlatTopRequiredColdWell} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -932,7 +952,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ColdFoodSheetPanUnitsPanel",
-                  "visibleIf": "{ColdServiceComponentTypes} contains 'Cold Food Sheet Pan Units'",
+                  "visibleIf": "{Serving Line Details[0].ColdServiceComponentTypes} allof ['Cold Food Sheet Pan Units']",
+                  "title": "Cold Food Sheet Pan Units",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -947,11 +969,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponentsColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Elevated' or {Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "Describe Located above what Components?"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterialColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "title": "Select Overshelf Material",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Cold Food Sheet Pan Unit (Standard)",
@@ -963,7 +987,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "IfElevatedColdSheetPan",
-                      "visibleIf": "{HeightUnitsProvidedColdSheetPan} contains 'Elevated'",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "title": "If Elevated",
                       "choices": [
                         "One (1) Elevated Tier",
@@ -1001,7 +1025,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthColdSheetPan",
-                      "visibleIf": "{TrayStorageFlatTopRequiredColdSheetPan} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredColdSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1016,12 +1040,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthColdSheetPan",
-                      "visibleIf": "{TrayPassFlatTopRequiredColdSheetPan} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredColdSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
                       "choices": [
                         "Yes",
@@ -1031,6 +1056,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
                       "choices": [
                         "None",
@@ -1048,7 +1074,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "RefrigeratedMailSlotMerchandiserPanel",
-                  "visibleIf": "{ColdServiceComponentTypes} contains 'Refrigerated Mail Slot Merchandiser'",
+                  "visibleIf": "{Serving Line Details[0].ColdServiceComponentTypes} allof ['Refrigerated Mail Slot Merchandiser']",
+                  "title": "Refrigerated Mail Slot Merchandiser",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -1089,7 +1117,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherColdComponentPanel",
-                  "visibleIf": "{ColdServiceComponentTypes} contains 'Other Cold Component'",
+                  "visibleIf": "{Serving Line Details[0].ColdServiceComponentTypes} allof ['Other Cold Component']",
+                  "title": "Other Cold Component",
                   "elements": [
                     {
                       "type": "comment",
@@ -1106,6 +1135,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot/Cold Service} = true",
               "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot/Cold Service} = true",
               "title": "Combined Hot/Cold Service",
+              "state": "expanded",
               "elements": [
                 {
                   "type": "panel",
@@ -1128,7 +1158,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeIndividualHotColdWellsPanel",
-                  "visibleIf": "{CombinedServiceComponentTypes} contains 'Mod-U-Serve Individual Hot / Cold Wells'",
+                  "visibleIf": "{Serving Line Details[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Individual Hot / Cold Wells']",
+                  "title": "Mod-U-Serve Individual Hot / Cold Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -1174,7 +1206,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthHotColdWells",
-                      "visibleIf": "{TrayStorageFlatTopRequiredHotColdWells} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredHotColdWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1189,7 +1221,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthHotColdWells",
-                      "visibleIf": "{TrayPassFlatTopRequiredHotColdWells} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredHotColdWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1221,7 +1253,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeBulkBainMarieHotColdWellsPanel",
-                  "visibleIf": "{CombinedServiceComponentTypes} contains 'Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells'",
+                  "visibleIf": "{Serving Line Details[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells']",
+                  "title": "Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -1265,7 +1299,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthBulkHotColdWell",
-                      "visibleIf": "{TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1280,7 +1314,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthBulkHotColdWell",
-                      "visibleIf": "{TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1312,7 +1346,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "LTIQuickSwitchHotColdFreezeWellsPanel",
-                  "visibleIf": "{CombinedServiceComponentTypes} contains 'LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)'",
+                  "visibleIf": "{Serving Line Details[0].CombinedServiceComponentTypes} allof ['LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)']",
+                  "title": "LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -1346,7 +1382,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthLTIQuickSwitch",
-                      "visibleIf": "{TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1361,7 +1397,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthLTIQuickSwitch",
-                      "visibleIf": "{TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'",
                       "title": "Specify Approximate Width in Inches"
                     },
                     {
@@ -1398,7 +1434,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HotColdFoodSheetPanUnitsPanel",
-                  "visibleIf": "{CombinedServiceComponentTypes} contains 'Hot / Cold Food Sheet Pan Units'",
+                  "visibleIf": "{Serving Line Details[0].CombinedServiceComponentTypes} allof ['Hot / Cold Food Sheet Pan Units']",
+                  "title": "Hot / Cold Food Sheet Pan Units",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -1413,11 +1451,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponentsHotColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated' or {Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "Describe Located above what Components?"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterialHotColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "title": "Select Overshelf Material",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Hot/Cold Sheet Pan Unit (Standard)",
@@ -1429,7 +1469,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "IfElevatedHotColdSheetPan",
-                      "visibleIf": "{HeightUnitsProvidedHotColdSheetPan} contains 'Elevated'",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "title": "If Elevated",
                       "choices": [
                         "One (1) Elevated Tier",
@@ -1488,6 +1528,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfHotColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
                       "choices": [
                         "Yes",
@@ -1497,6 +1538,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletHotColdSheetPan",
+                      "visibleIf": "{Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {Serving Line Details[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
                       "choices": [
                         "None",
@@ -1514,7 +1556,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherHotColdComponentPanel",
-                  "visibleIf": "{CombinedServiceComponentTypes} contains 'Other Hot/Cold Component'",
+                  "visibleIf": "{Serving Line Details[0].CombinedServiceComponentTypes} allof ['Other Hot/Cold Component']",
+                  "title": "Other Hot/Cold Component",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "comment",
@@ -1544,6 +1588,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         "Mod-U-Serve Milk Cooler (Milk Crate)",
                         "Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)",
                         "Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)",
+                        "Coffee Service",
+                        "Smoothie or Other Blended Drink/Food Service",
                         "Other Beverage Needs"
                       ]
                     }
@@ -1552,7 +1598,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeDropInBeverageUnitPanel",
-                  "visibleIf": "{BeverageServiceComponentTypes} contains 'Mod-U-Serve Drop-In Beverage Unit'",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Drop-In Beverage Unit']",
+                  "title": "Mod-U-Serve Drop-In Beverage Unit",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "dropdown",
@@ -1586,7 +1634,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeMilkCoolerPanel",
-                  "visibleIf": "{BeverageServiceComponentTypes} contains 'Mod-U-Serve Milk Cooler (Milk Crate)'",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Milk Cooler (Milk Crate)']",
+                  "title": "Mod-U-Serve Milk Cooler",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -1600,7 +1650,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "FreeStandingMilkCoolerPanel",
-                      "visibleIf": "{TypeOfMilkCooler} = 'Free Standing'",
+                      "visibleIf": "{Serving Line Details[0].TypeOfMilkCooler} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "dropdown",
@@ -1659,7 +1709,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "InlineBuiltInMilkCoolerPanel",
-                      "visibleIf": "{TypeOfMilkCooler} = 'Inline Built into Serving Line'",
+                      "visibleIf": "{Serving Line Details[0].TypeOfMilkCooler} = 'Inline Built into Serving Line'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -1703,7 +1753,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "MilkCoolerByOtherManufacturerPanel",
-                  "visibleIf": "{BeverageServiceComponentTypes} contains 'Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)'",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)']",
+                  "title": "Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "text",
@@ -1720,7 +1772,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "SilverKingBulkMilkDispenserPanel",
-                  "visibleIf": "{BeverageServiceComponentTypes} contains 'Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)'",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)']",
+                  "title": "Silver King Bulk Milk Dispenser",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -1751,8 +1805,289 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 {
                   "type": "panel",
+                  "name": "coffeeService",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Coffee Service']",
+                  "title": "Coffee Service",
+                  "state": "expanded",
+                  "elements": [
+                    {
+                      "type": "radiogroup",
+                      "name": "coffeeBrewerOptions",
+                      "title": "Coffee Brewer Options",
+                      "choices": [
+                        "Concordia Xpress Touch 6 (Provided by Mod-U-Serve)",
+                        {
+                          "value": "other",
+                          "text": "Other Brand by Mod-U-Serve (specify manufacturer & model number)"
+                        }
+                      ],
+                      "showOtherItem": true
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "decorativePartition",
+                      "title": "Is a decorative partition required?",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "partitionOptions",
+                      "visibleIf": "{Serving Line Details[0].decorativePartition} = 'Yes'",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "partitionType",
+                          "title": "Partition Type",
+                          "choices": [
+                            "3-Sided Frosted Vertical Glass",
+                            "3-Sided 3-Form Vertical Partition",
+                            {
+                              "value": "3-sided-laminate",
+                              "text": "3-Sided Laminate Partition"
+                            },
+                            {
+                              "value": "3-sided-tiled",
+                              "text": "3-Sided Tiled Partition"
+                            },
+                            "Other",
+                            "N/A"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "raisedPedestal",
+                      "title": "Is a decorative Raised Wedge or Round Pedestal Required for Staging Coffee?",
+                      "choices": [
+                        "Raised Wedge",
+                        "Round Pedestal",
+                        "N/A"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "panel",
+                  "name": "smoothieService",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Smoothie or Other Blended Drink/Food Service']",
+                  "title": "Smoothie or Other Blended Drink/Food Service",
+                  "state": "expanded",
+                  "elements": [
+                    {
+                      "type": "radiogroup",
+                      "name": "blenderRequired",
+                      "title": "Blender Required?",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "blenderOptions",
+                      "visibleIf": "{Serving Line Details[0].blenderRequired} = 'Yes'",
+                      "title": "Blender Options",
+                      "choices": [
+                        "Waring MX1500XTX for Blended Smoothies or Beverages provided by Mod-U-Serve",
+                        "Waring MXE2000 Ellipse for Blended Smoothies, Beverages or Acai Bowls provided by Mod-U-Serve",
+                        {
+                          "value": "other",
+                          "text": "Other Manufacturer provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)"
+                        }
+                      ],
+                      "showOtherItem": true
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "iceRequirements",
+                      "title": "Ice Requirements?",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "iceRequirementOptions",
+                      "visibleIf": "{Serving Line Details[0].iceRequirements} = 'Yes'",
+                      "title": "Ice Requirement Options",
+                      "choices": [
+                        "Cambro Model ICS100L4S, 100 lb. Capacity Undercounter Ice Caddy provided by Mod-U-Serve",
+                        "Cambro Model ICS125LB, 125 lb. Capacity Undercounter Ice Caddy provided by Mod-U-Serve",
+                        "Cambro Model ICS175LB, 175 lb. Capacity Undercounter Ice Caddy provided by Mod-U-Serve",
+                        {
+                          "value": "other",
+                          "text": "Other Ice Caddy provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)"
+                        },
+                        "Follett Model UMD414A80 Undercounter Ice Machine provided by Mod-U-Serve",
+                        {
+                          "value": "other-ice-machine",
+                          "text": "Other Ice Machine (specify Manufacturer, Model & Quantity)"
+                        }
+                      ],
+                      "showOtherItem": true
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "undercounterRefrigeration",
+                      "title": "Undercounter Refrigeration Requirements?",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "checkbox",
+                      "name": "undercounterRefrigerationType",
+                      "visibleIf": "{Serving Line Details[0].undercounterRefrigeration} = 'Yes'",
+                      "title": "Undercounter Refrigeration Type",
+                      "choices": [
+                        "Refrigerator",
+                        "Freezer",
+                        "Other"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "undercounterRefrigeratorOptions",
+                      "visibleIf": "{Serving Line Details[0].undercounterRefrigerationType} allof ['Refrigerator']",
+                      "title": "Utility Refrigerator Undercounter Refrigerator provided by Mod-U-Serve",
+                      "choices": [
+                        "Utility Refrigerator One-Door, model CHR-30-1S-D-EM Undercounter Refrigerator",
+                        "Utility Refrigerator Two-Door, model CHR-50-2S-D-EM Undercounter Refrigerator",
+                        "Utility Refrigerator Two-Door, model CHR-60-2S-D-EM Undercounter Refrigerator",
+                        "Utility Refrigerator Two-Door, model CHR-75-3S-D-EM Undercounter Refrigerator",
+                        "Utility Refrigerator Two-Door, model CHR-90-3S-D-EM Undercounter Refrigerator"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "undercounterFreezerOptions",
+                      "visibleIf": "{Serving Line Details[0].undercounterRefrigerationType} allof ['Freezer']",
+                      "title": "Utility Refrigerator Undercounter Freezer provided by Mod-U-Serve",
+                      "choices": [
+                        "Utility Refrigerator One-Door, model CHF-30-1S-D-EM Undercounter Freezer",
+                        "Utility Refrigerator Two-Door, model CHF-50-2S-D-EM Undercounter Freezer",
+                        "Utility Refrigerator Two-Door, model CHF-60-2S-D-EM Undercounter Freezer",
+                        "Utility Refrigerator Two-Door, model CHF-75-3S-D-EM Undercounter Freezer",
+                        "Utility Refrigerator Two-Door, model CHF-90-3S-D-EM Undercounter Freezer"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "undercounterRefrigerationTypeOther",
+                      "visibleIf": "{Serving Line Details[0].undercounterRefrigerationType} allof ['Other']",
+                      "title": "Specify Manufacturer, Model & Quantity",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOther_Manufacturer",
+                          "title": "Manufacturer"
+                        },
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOther_Model",
+                          "title": "Model"
+                        },
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOther_Quantity",
+                          "title": "Quantity"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "partitionOptionsSmoothie",
+                      "title": "Is a decorative partition required at the Smoothie / Blender Station?",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "partitionTypeSmoothie",
+                      "visibleIf": "{Serving Line Details[0].partitionOptionsSmoothie} = 'Yes'",
+                      "title": "If Yes:",
+                      "choices": [
+                        "3-Sided Frosted Vertical Glass",
+                        "3-Sided 3-Form Vertical Partition",
+                        {
+                          "value": "3-sided-laminate",
+                          "text": "3-Sided Laminate Partition"
+                        },
+                        {
+                          "value": "3-sided-tiled",
+                          "text": "3-Sided Tiled Partition"
+                        },
+                        "Other",
+                        "N/A"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "raisedPedestalSmoothie",
+                      "title": "Is a decorative Raised Wedge or Round Pedestal Required for Staging Smoothie or other Blended Foods & Beverages?",
+                      "choices": [
+                        "Raised Wedge",
+                        "Round Pedestal",
+                        "N/A"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "iceWaterDispenser",
+                      "title": "Ice & Water Dispenser:",
+                      "choices": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "iceWaterDispenserOptions",
+                      "visibleIf": "{Serving Line Details[0].iceWaterDispenser} = 'Yes'",
+                      "title": "Choose an Ice & Water Dispenser Option:",
+                      "choices": [
+                        "Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)",
+                        "Follett Model 50CI425A-S Ice & Water Dispenser provided by Mod-U-Serve"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "iceWaterDispenserOptionsTypeOther",
+                      "visibleIf": "{Serving Line Details[0].iceWaterDispenserOptions} = 'Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)'",
+                      "title": "Specify Manufacturer, Model & Quantity",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOtherManufacturer",
+                          "title": "Manufacturer"
+                        },
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOtherModel",
+                          "title": "Model"
+                        },
+                        {
+                          "type": "text",
+                          "name": "undercounterRefrigerationTypeOtherQuantity",
+                          "title": "Quantity"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "panel",
                   "name": "OtherBeverageNeedsPanel",
-                  "visibleIf": "{BeverageServiceComponentTypes} contains 'Other Beverage Needs'",
+                  "visibleIf": "{Serving Line Details[0].BeverageServiceComponentTypes} allof ['Other Beverage Needs']",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "text",
@@ -1765,125 +2100,10 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             {
               "type": "panel",
-              "name": "IceServicePanel",
-              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Ice Service} = true",
-              "title": "Ice Service Components",
-              "elements": [
-                {
-                  "type": "panel",
-                  "name": "IceServiceComponentsPanel",
-                  "elements": [
-                    {
-                      "type": "checkbox",
-                      "name": "IceServiceComponentTypes",
-                      "title": "Select all that Apply (Check Box):",
-                      "choices": [
-                        "Ice Caddy",
-                        "Ice Machine",
-                        "Ice & Water Dispenser"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "panel",
-                  "name": "IceCaddyPanel",
-                  "visibleIf": "{IceServiceComponentTypes} contains 'Ice Caddy'",
-                  "elements": [
-                    {
-                      "type": "dropdown",
-                      "name": "IceCaddyModel",
-                      "title": "Ice Caddy Model",
-                      "choices": [
-                        "Cambro Model ICS100L4S, 100 lb. Capacity",
-                        "Cambro Model ICS125LB, 125 lb. Capacity",
-                        "Cambro Model ICS175LB, 175 lb. Capacity"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "name": "OtherIceCaddyModel",
-                      "visibleIf": "{IceCaddyModel} = 'Other Ice Caddy'",
-                      "title": "Specify Manufacturer, Model & Quantity"
-                    },
-                    {
-                      "type": "html",
-                      "name": "ManufacturerReportLinkICS100L4S",
-                      "html": "<a href=\"https://www.cambro.com/Products/beverage-bars/slidinglid-ice-caddies/\">Cambro ICS100L4S Manufacturer Report Link</a>"
-                    },
-                    {
-                      "type": "html",
-                      "name": "ManufacturerReportLinkICS125LB",
-                      "html": "<a href=\"https://www.cambro.com/Products/beverage-bars/slidinglid-ice-caddies/\">Cambro ICS125LB Manufacturer Report Link</a>"
-                    },
-                    {
-                      "type": "html",
-                      "name": "ManufacturerReportLinkICS175LB",
-                      "html": "<a href=\"https://www.cambro.com/Products/beverage-bars/slidinglid-ice-caddies/\">Cambro ICS175LB Manufacturer Report Link</a>"
-                    }
-                  ]
-                },
-                {
-                  "type": "panel",
-                  "name": "IceMachinePanel",
-                  "visibleIf": "{IceServiceComponentTypes} contains 'Ice Machine'",
-                  "elements": [
-                    {
-                      "type": "dropdown",
-                      "name": "IceMachineModel",
-                      "title": "Ice Machine Model",
-                      "choices": [
-                        "Follett Model UMD414A80 Undercounter Ice Machine",
-                        "Other Ice Machine"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "name": "OtherIceMachineModel",
-                      "visibleIf": "{IceMachineModel} = 'Other Ice Machine'",
-                      "title": "Specify Manufacturer, Model & Quantity"
-                    },
-                    {
-                      "type": "html",
-                      "name": "ManufacturerReportLinkUMD414A80",
-                      "html": "<a href=\"https://www.follettice.com/maestro-plus-ice-machine-bin-foodservice-1\">Follett UMD414A80 Manufacturer Report Link</a>"
-                    }
-                  ]
-                },
-                {
-                  "type": "panel",
-                  "name": "IceAndWaterDispenserPanel",
-                  "visibleIf": "{IceServiceComponentTypes} contains 'Ice & Water Dispenser'",
-                  "elements": [
-                    {
-                      "type": "radiogroup",
-                      "name": "IceAndWaterDispenserModel",
-                      "title": "Ice & Water Dispenser Model",
-                      "choices": [
-                        "Follett Model 50CI425A-S Ice & Water Dispenser",
-                        "Other Ice & Water Dispenser"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "name": "OtherIceAndWaterDispenserModel",
-                      "visibleIf": "{IceAndWaterDispenserModel} = 'Other Ice & Water Dispenser'",
-                      "title": "Specify Manufacturer, Model & Quantity"
-                    },
-                    {
-                      "type": "html",
-                      "name": "ManufacturerReportLink50CI425AS",
-                      "html": "<a href=\"https://www.follettice.com/symphony-plus-ice-and-water-dispenser-chewblet-ice-machine-25-and-50-ci-series-countertop\">Follett 50CI425A-S Manufacturer Report Link</a>"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "panel",
               "name": "OtherServicesPanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Other Service} = true",
               "title": "Other Services",
+              "state": "expanded",
               "elements": [
                 {
                   "type": "panel",
@@ -1911,7 +2131,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "StainlessSteelSnacksRacksPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Stainless Steel Snacks Racks'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Stainless Steel Snacks Racks']",
+                  "title": "Stainless Steel Snacks Racks",
+                  "state": "expanded",
                   "elements": [
                     {
                       "type": "text",
@@ -1942,21 +2164,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "IceCreamServicePanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Ice Cream Service'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Ice Cream Service']",
                   "elements": [
                     {
-                      "type": "radiogroup",
-                      "name": "IceCreamServiceRequired",
+                      "type": "checkbox",
+                      "name": "IceCreamServiceOptions",
                       "title": "Ice Cream Service",
                       "choices": [
-                        "Yes",
-                        "No"
+                        "Mod-U-Serve Drop-In Ice Cream Unit",
+                        "Silver King Model SKFDI23-ELUS1 Drop-In Ice Cream Merchandiser provided by Mod-U-Serve",
+                        "Ice Cream Merchandiser By Vendor"
                       ]
                     },
                     {
                       "type": "panel",
                       "name": "ModUServeDropInIceCreamUnitPanel",
-                      "visibleIf": "{IceCreamServiceRequired} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].IceCreamServiceOptions} allof ['Mod-U-Serve Drop-In Ice Cream Unit']",
                       "elements": [
                         {
                           "type": "dropdown",
@@ -1990,7 +2213,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "SilverKingDropInIceCreamMerchandiserPanel",
-                      "visibleIf": "{IceCreamServiceRequired} = 'Yes'",
+                      "visibleIf": "{IceCreamServiceOptions} = 'Yes'",
                       "elements": [
                         {
                           "type": "html",
@@ -2002,7 +2225,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "IceCreamMerchandiserByVendorPanel",
-                      "visibleIf": "{IceCreamServiceRequired} = 'Yes'",
+                      "visibleIf": "{Serving Line Details[0].IceCreamServiceOptions} allof ['Ice Cream Merchandiser By Vendor']",
                       "elements": [
                         {
                           "type": "text",
@@ -2016,7 +2239,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "FlatTopMerchandisingPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Flat Top Merchandising'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Flat Top Merchandising']",
+                  "title": "Flat Top Merchandising",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -2039,7 +2263,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "radiogroup",
                           "name": "TiersOfServiceBSIClearview",
-                          "title": "Tiers of Service",
+                          "title": "BSI Clearview U/V Bonded Glass Ambient Merchandising by Mod-U-Serve",
                           "choices": [
                             "BSI CV100-3 Top Shelf Only",
                             "BSI CV100-4 Top Shelf & Intermediate Shelf",
@@ -2062,37 +2286,36 @@ document.addEventListener("DOMContentLoaded", function() {
                           "html": "<a href=\"file:///C:/Users/ceast/Downloads/bsi-clearview-cv100-5-spec-sheet.pdf\">BSI CV100-5 Manufacturer Report Link</a>"
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "panel",
-                  "name": "BuiltInHandwashingPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Built-In Handwashing'",
-                  "elements": [
-                    {
-                      "type": "radiogroup",
-                      "name": "BuiltInHandwashingRequired",
-                      "title": "Built-In Handwashing",
-                      "choices": [
-                        "Yes",
-                        "No"
-                      ]
                     },
                     {
                       "type": "panel",
-                      "name": "BuiltInHandwashingOptionsPanel",
-                      "visibleIf": "{BuiltInHandwashingRequired} = 'Yes'",
+                      "name": "BuiltInHandwashingPanel",
                       "elements": [
                         {
-                          "type": "text",
-                          "name": "HandwashingLocation",
-                          "title": "Location"
+                          "type": "radiogroup",
+                          "name": "BuiltInHandwashingRequired",
+                          "title": "Built-In Handwashing",
+                          "choices": [
+                            "Yes",
+                            "No"
+                          ]
                         },
                         {
-                          "type": "text",
-                          "name": "HandwashingDescription",
-                          "title": "Description"
+                          "type": "panel",
+                          "name": "BuiltInHandwashingOptionsPanel",
+                          "visibleIf": "{Serving Line Details[0].BuiltInHandwashingRequired} = 'Yes'",
+                          "elements": [
+                            {
+                              "type": "text",
+                              "name": "HandwashingLocation",
+                              "title": "Location"
+                            },
+                            {
+                              "type": "text",
+                              "name": "HandwashingDescription",
+                              "title": "Description"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -2101,52 +2324,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CashierStandPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Cashier Stand'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Cashier Stand']",
+                  "title": "Cashier Stand",
                   "elements": [
                     {
                       "type": "radiogroup",
-                      "name": "CashierStandRequired",
-                      "title": "Cashier Stand",
+                      "name": "SingleOrDoubleCashier",
+                      "title": "Single or Double Cashier",
+                      "choices": [
+                        "Single",
+                        "Double"
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "CashDrawerRequired",
+                      "title": "Cash Drawer Required",
                       "choices": [
                         "Yes",
                         "No"
                       ]
                     },
                     {
-                      "type": "panel",
-                      "name": "CashierStandOptionsPanel",
-                      "visibleIf": "{CashierStandRequired} = 'Yes'",
-                      "elements": [
-                        {
-                          "type": "radiogroup",
-                          "name": "SingleOrDoubleCashier",
-                          "title": "Single or Double Cashier",
-                          "choices": [
-                            "Single",
-                            "Double"
-                          ]
-                        },
-                        {
-                          "type": "radiogroup",
-                          "name": "CashDrawerRequired",
-                          "title": "Cash Drawer Required",
-                          "choices": [
-                            "Yes",
-                            "No"
-                          ]
-                        },
-                        {
-                          "type": "checkbox",
-                          "name": "CashierStandAccessories",
-                          "title": "Accessories",
-                          "choices": [
-                            "S/S Hinged Access Door",
-                            "Hinged Access Door with Same Material as Counter Front",
-                            "Stainless Steel Liner",
-                            "Liner with Same Material as Counter Front",
-                            "LED Light in Liner?"
-                          ]
-                        }
+                      "type": "checkbox",
+                      "name": "CashierStandAccessories",
+                      "title": "Accessories",
+                      "choices": [
+                        "S/S Hinged Access Door",
+                        "Hinged Access Door with Same Material as Counter Front",
+                        "Stainless Steel Liner",
+                        "Liner with Same Material as Counter Front",
+                        "LED Light in Liner?"
                       ]
                     }
                   ]
@@ -2154,7 +2362,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CondimentsStationPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Condiments Station'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Condiments Station']",
+                  "title": "Condiments Station",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -2168,7 +2377,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "CondimentsFreeStandingPanel",
-                      "visibleIf": "{CondimentsLocation} = 'Free Standing'",
+                      "visibleIf": "{Serving Line Details[0].CondimentsLocation} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -2193,48 +2402,32 @@ document.addEventListener("DOMContentLoaded", function() {
                       "choices": [
                         "#10 Cans",
                         "Bag In Box",
-                        "Portion Control Packets"
-                      ]
-                    },
-                    {
-                      "type": "panel",
-                      "name": "CondimentsCansPanel",
-                      "visibleIf": "{CondimentDispensingNeeds} contains '#10 Cans'",
-                      "elements": [
-                        {
-                          "type": "text",
-                          "name": "NumberOfCansDispensed",
-                          "title": "Number of Cans Dispensed"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "panel",
-                      "name": "CondimentsBagInBoxPanel",
-                      "visibleIf": "{CondimentDispensingNeeds} contains 'Bag In Box'",
-                      "elements": [
-                        {
-                          "type": "text",
-                          "name": "NumberOfBagInBoxDispensers",
-                          "title": "Number of Bag in Box Dispensers"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "panel",
-                      "name": "CondimentsPortionControlPacketsPanel",
-                      "visibleIf": "{CondimentDispensingNeeds} contains 'Portion Control Packets'",
-                      "elements": [
-                        {
-                          "type": "text",
-                          "name": "NumberOfPortionControlFlavors",
-                          "title": "Number of Portion Control Flavors"
-                        }
+                        "Portion Control Packets",
+                        "Other"
                       ]
                     },
                     {
                       "type": "text",
+                      "name": "NumberOfCansDispensed",
+                      "visibleIf": "{Serving Line Details[0].CondimentDispensingNeeds} allof ['#10 Cans']",
+                      "title": "Number of Cans Dispensed"
+                    },
+                    {
+                      "type": "text",
+                      "name": "NumberOfBagInBoxDispensers",
+                      "visibleIf": "{Serving Line Details[0].CondimentDispensingNeeds} allof ['Bag In Box']",
+                      "title": "Number of Bag in Box Dispensers"
+                    },
+                    {
+                      "type": "text",
+                      "name": "NumberOfPortionControlFlavors",
+                      "visibleIf": "{Serving Line Details[0].CondimentDispensingNeeds} allof ['Portion Control Packets']",
+                      "title": "Number of Portion Control Flavors"
+                    },
+                    {
+                      "type": "text",
                       "name": "OtherCondimentDispensingNeeds",
+                      "visibleIf": "{Serving Line Details[0].CondimentDispensingNeeds} allof ['Other']",
                       "title": "Other Condiment Dispensing Needs"
                     }
                   ]
@@ -2242,7 +2435,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "TrayCartsPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Tray Carts'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Tray Carts']",
+                  "title": "Tray Carts",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -2300,7 +2494,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "OtherTrayCartsMaterialFinishes",
-                      "visibleIf": "{TrayCartsMaterialFinishes} = 'Other'",
+                      "visibleIf": "{Serving Line Details[0].TrayCartsMaterialFinishes} = 'Other'",
                       "title": "Specify Other Materials"
                     },
                     {
@@ -2318,7 +2512,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "StudentSharingStationPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Student Sharing Station'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Student Sharing Station']",
+                  "title": "Student Sharing Station",
                   "elements": [
                     {
                       "type": "radiogroup",
@@ -2332,7 +2527,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "StudentSharingStationFreeStandingPanel",
-                      "visibleIf": "{StudentSharingStationLocation} = 'Free Standing'",
+                      "visibleIf": "{Serving Line Details[0].StudentSharingStationLocation} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -2367,7 +2562,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "OtherStudentSharingStationMaterialFinishes",
-                      "visibleIf": "{StudentSharingStationMaterialFinishes} = 'Other'",
+                      "visibleIf": "{Serving Line Details[0].StudentSharingStationMaterialFinishes} = 'Other'",
                       "title": "Specify Other Materials"
                     },
                     {
@@ -2385,46 +2580,46 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "DecorativeAccentPiecesPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Decorative Accent Pieces'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Decorative Accent Pieces']",
+                  "title": "Decorative Accent Pieces",
                   "elements": [
                     {
-                      "type": "radiogroup",
-                      "name": "BelowCounterRecessedPlateShelves",
-                      "title": "Below Counter Recessed Plate Shelves",
-                      "choices": [
+                      "type": "panel",
+                      "name": "panel2",
+                      "elements": [
                         {
-                          "value": "ShelfMaterialFinish",
-                          "text": "Shelf: Same Material Finish as Counter Top"
+                          "type": "radiogroup",
+                          "name": "BelowCounterRecessedPlateShelvesFinish",
+                          "title": "Below Counter Recessed Plate Shelves",
+                          "choices": [
+                            "Shelf: Same Material Finish as Counter Top",
+                            "Shelf: Other",
+                            "3-Sided Recess: Black Plastic Laminate",
+                            "3-Sided Recess: Other"
+                          ],
+                          "showNoneItem": true
                         },
-                        "Other"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "name": "OtherPlateShelfMaterialFinish",
-                      "title": "Specify Other"
-                    },
-                    {
-                      "type": "radiogroup",
-                      "name": "ThreeSidedRecess",
-                      "title": "3-Sided Recess",
-                      "choices": [
-                        "Black Plastic Laminate",
-                        "Other"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "name": "OtherThreeSidedRecess",
-                      "title": "Specify Other"
-                    },
-                    {
-                      "type": "radiogroup",
-                      "name": "LEDLightingPlateShelves",
-                      "title": "LED Lighting",
-                      "choices": [
-                        "Yes",
-                        "No"
+                        {
+                          "type": "text",
+                          "name": "OtherRecessedPlateShelfMaterialFinish",
+                          "visibleIf": "{Serving Line Details[0].BelowCounterRecessedPlateShelvesFinish} = 'Shelf: Other'",
+                          "title": "Specify Other"
+                        },
+                        {
+                          "type": "text",
+                          "name": "OtherThreeSidedRecessMaterialFinish",
+                          "visibleIf": "{Serving Line Details[0].BelowCounterRecessedPlateShelvesFinish} = '3-Sided Recess: Other'",
+                          "title": "Specify Other"
+                        },
+                        {
+                          "type": "radiogroup",
+                          "name": "LEDLightingPlateShelves",
+                          "title": "LED Lighting",
+                          "choices": [
+                            "Yes",
+                            "No"
+                          ]
+                        }
                       ]
                     },
                     {
@@ -2432,13 +2627,39 @@ document.addEventListener("DOMContentLoaded", function() {
                       "name": "BelowCounterRecessedSnackShelves",
                       "title": "Below Counter Recessed Snack Shelves",
                       "choices": [
-                        "LED Lighting: Yes",
-                        "LED Lighting: No"
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "BelowCounterRecessedSnackShelvesPanel",
+                      "visibleIf": "{Serving Line Details[0].BelowCounterRecessedSnackShelves} = 'Yes'",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "BelowCounterRecessedSnackShelvesLighting",
+                          "title": "Lighting",
+                          "choices": [
+                            "LED Lighting: Yes",
+                            "LED Lighting: No"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "radiogroup",
+                      "name": "DecorativePedestals",
+                      "title": "Decorative Pedestals",
+                      "choices": [
+                        "Yes",
+                        "No"
                       ]
                     },
                     {
                       "type": "panel",
                       "name": "DecorativePedestalsPanel",
+                      "visibleIf": "{Serving Line Details[0].DecorativePedestals} = 'Yes'",
                       "elements": [
                         {
                           "type": "text",
@@ -2468,7 +2689,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "text",
                           "name": "OtherDecorativePedestalsFinish",
-                          "visibleIf": "{DecorativePedestalsFinish} = 'Other'",
+                          "visibleIf": "{Serving Line Details[0].DecorativePedestalsFinish} = 'Other'",
                           "title": "Specify Other"
                         },
                         {
@@ -2483,7 +2704,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "text",
                           "name": "OtherCapMaterialFinish",
-                          "visibleIf": "{DecorativePedestalsCapMaterialFinish} = 'Other'",
+                          "visibleIf": "{Serving Line Details[0].DecorativePedestalsCapMaterialFinish} = 'Other'",
                           "title": "Specify Other"
                         },
                         {
@@ -2502,12 +2723,482 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherNeedsPanel",
-                  "visibleIf": "{OtherServicesComponentTypes} contains 'Other'",
+                  "visibleIf": "{Serving Line Details[0].OtherServicesComponentTypes} allof ['Other']",
                   "elements": [
                     {
                       "type": "comment",
                       "name": "OtherNeeds",
                       "title": "Other Needs"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "panel",
+              "name": "additionalSupportEquipmentNeeds",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.AdditionalSupport} = true",
+              "title": "Additional Support Equipment Needs on the Serving Line or in the Kitchen:",
+              "state": "expanded",
+              "elements": [
+                {
+                  "type": "checkbox",
+                  "name": "AdditionalSupportEquipmentCheckbox",
+                  "title": "Please select the additional support equipment needed",
+                  "choices": [
+                    "Refrigerated Merchandisers",
+                    "Speed Ovens, Panini Presses & Ventless Pizza Ovens",
+                    "Countertop Heated Merchandisers"
+                  ]
+                },
+                {
+                  "type": "panel",
+                  "name": "refrigeratedMerchandisers",
+                  "visibleIf": "{Serving Line Details[0].AdditionalSupportEquipmentCheckbox} allof ['Refrigerated Merchandisers']",
+                  "title": "Refrigerated Merchandisers",
+                  "elements": [
+                    {
+                      "type": "checkbox",
+                      "name": "RefrigeratedMerchandiserChoices",
+                      "title": "Refrigerated Merchandiser Choices",
+                      "choices": [
+                        "BSI CP-500N Salsa Susan provided by Mod-U-Serve",
+                        "Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve",
+                        "Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve",
+                        "Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve",
+                        "Other Refrigerated Merchandiser Needs"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "BSISalsaSusanPanel",
+                      "visibleIf": "{Serving Line Details[0].RefrigeratedMerchandiserChoices} allof ['BSI CP-500N Salsa Susan provided by Mod-U-Serve']",
+                      "title": "BSI CP-500N Salsa Susan provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "refrigeratedMerchandisersLocation",
+                          "title": "Location:"
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "refrigeratedMerchandisersSize",
+                          "title": "Size:",
+                          "choices": [
+                            "24\" with six (6) Bain Marie or four (4) Triangle Pans",
+                            "24\" with twelve (12) Bain Marie or four (4) Triangle Pans",
+                            "24\" with eighteen (18) Bain Marie or four (4) Triangle Pans"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "refrigeratedMerchandisersReportLink",
+                          "html": "<a href='http://myftpupload.com/bsi-cold-pans-spec-sheets.pdf'>Manufacturer Report Link - CP-500</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "utilityRefrigeratorFreestanding",
+                      "visibleIf": "{Serving Line Details[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "title": "Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "freestandingLocation",
+                          "title": "Location:"
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "freestandingSize",
+                          "title": "Size:",
+                          "choices": [
+                            "36\" wide",
+                            "48\" wide"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "freestandingStyle",
+                          "title": "Style:",
+                          "choices": [
+                            "Sliding Glass Front Only (Reach-In)",
+                            "Sliding Glass Front & Rear (Pass-Thru)"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "freestandingReportLink",
+                          "html": "<a href='http://myftpupload.com/Reach-In'>Manufacturer Report Link - Reach-In</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "utilityRefrigeratorDropin",
+                      "visibleIf": "{Serving Line Details[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "title": "Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "dropinLocation",
+                          "title": "Location:"
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "dropinSize",
+                          "title": "Size:",
+                          "choices": [
+                            "36\" wide",
+                            "48\" wide"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "dropinStyle",
+                          "title": "Style:",
+                          "choices": [
+                            "Sliding Glass Front Only (Reach-In)",
+                            "Sliding Glass Front & Rear (Pass-Thru)"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "dropinReportLink",
+                          "html": "<a href='http://myftpupload.com/Drop-In'>Manufacturer Report Link - Drop-In</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "structuralConceptsOasis",
+                      "visibleIf": "{Serving Line Details[0].RefrigeratedMerchandiserChoices} allof ['Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve']",
+                      "title": "Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "oasisLocation",
+                          "title": "Location:",
+                          "choices": [
+                            "Built-Into Serving Line with 3-Sided Skeleton Body",
+                            "Free Standing"
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "name": "oasisLocationDescribe",
+                          "title": "Describe Where:"
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "oasisSize",
+                          "title": "Size:",
+                          "choices": [
+                            "36\" wide",
+                            "48\" wide",
+                            "60\" wide"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "oasisHeight",
+                          "title": "Height:",
+                          "choices": [
+                            "61-5/8\" tall"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "oasisFinish",
+                          "title": "Finish:",
+                          "choices": [
+                            "Black Interior / Exterior"
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "name": "oasisAlternateColor",
+                          "title": "Alternate Color:"
+                        },
+                        {
+                          "type": "checkbox",
+                          "name": "oasisOptions",
+                          "title": "Options/Accessories:",
+                          "choices": [
+                            "Rear Loading",
+                            "Rolling Locking Night Cover",
+                            "LED Lights on Shelves",
+                            "Clean Sweep Coil Cleaner"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "oasisReportLink36",
+                          "html": "<a href='https://structuralconcepts.com/products/co35r-co45r-co55r-co65r'>36\" wide x 61-5/8\" tall Manufacturer Report Link - CO35R</a>"
+                        },
+                        {
+                          "type": "html",
+                          "name": "oasisReportLink48",
+                          "html": "<a href='https://structuralconcepts.com/products/co35r-co45r-co55r-co65r'>48\" wide x 61-5/8\" tall Manufacturer Report Link - CO45R</a>"
+                        },
+                        {
+                          "type": "html",
+                          "name": "oasisReportLink60",
+                          "html": "<a href='https://structuralconcepts.com/products/co35r-co45r-co55r-co65r'>60\" wide x 61-5/8\" tall Manufacturer Report Link - CO55R</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "name": "otherRefrigeratedMerchandiserNeeds",
+                      "visibleIf": "{Serving Line Details[0].RefrigeratedMerchandiserChoices} allof ['Other Refrigerated Merchandiser Needs']",
+                      "title": "Other Refrigerated Merchandiser Needs:"
+                    }
+                  ]
+                },
+                {
+                  "type": "panel",
+                  "name": "countertopHeatedMerchandisers",
+                  "visibleIf": "{Serving Line Details[0].AdditionalSupportEquipmentCheckbox} allof ['Countertop Heated Merchandisers']",
+                  "title": "Countertop Heated Merchandisers",
+                  "elements": [
+                    {
+                      "type": "checkbox",
+                      "name": "CountertopHeatedMerchandiserOptions",
+                      "title": "Choose your Countertop Heated Merchandisers",
+                      "choices": [
+                        "BSI Solera Heated Surfaces provided by Mod-U-Serve",
+                        "Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve",
+                        "Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "bsiSolera",
+                      "visibleIf": "{Serving Line Details[0].CountertopHeatedMerchandiserOptions} allof ['BSI Solera Heated Surfaces provided by Mod-U-Serve']",
+                      "title": "BSI Solera Heated Surfaces provided by Mod-U-Serve:",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "name": "bsiSoleraLocation",
+                          "title": "Location:"
+                        },
+                        {
+                          "type": "radiogroup",
+                          "name": "bsiSoleraShape",
+                          "title": "Shape:",
+                          "choices": [
+                            "Round Countertop Flangeless HDD-INF-NF",
+                            "Rectangular Drop-In Countertop HTC-INF",
+                            "Flush Countertop HTD-INF-IN"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "bsiSoleraReportLink1",
+                          "html": "<a href='file:///C:/Users/ceast/Downloads/bsi-solera-hdd-inf-nf.pdf'>Manufacturer Report Link - BSI HDD-INF-NF</a>"
+                        },
+                        {
+                          "type": "html",
+                          "name": "bsiSoleraReportLink2",
+                          "html": "<a href='file:///C:/Users/ceast/Downloads/bsi-solera-htc-inf.pdf'>Manufacturer Report Link - BSI HTC-INF</a>"
+                        },
+                        {
+                          "type": "html",
+                          "name": "bsiSoleraReportLink3",
+                          "html": "<a href='file:///C:/Users/ceast/Downloads/bsi-solera-htd-inf-nf.pdf'>Manufacturer Report Link - BSI HTD-INF-NF</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "hatcoHzmhFlat",
+                      "visibleIf": "{Serving Line Details[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve']",
+                      "title": "Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "hatcoHzmhFlatTiers",
+                          "title": "Number of Tiers",
+                          "choices": [
+                            "Single Tier",
+                            "Double"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "hatcoHzmhFlatWidth",
+                          "title": "Width:",
+                          "choices": [
+                            "24\"",
+                            "30\"",
+                            "36\"",
+                            "42\"",
+                            "48\"",
+                            "54\""
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "hatcoHzmhFlatReportLink",
+                          "html": "<a href='https://hatcocorp.com/hzmh-flat'>Manufacturer Report Link - HZMH Flat Merchandisers</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "hatcoHzmsSlanted",
+                      "visibleIf": "{Serving Line Details[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve']",
+                      "title": "Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "hatcoHzmsSlantedTiers",
+                          "title": "Number of Tiers",
+                          "choices": [
+                            "Single Tier",
+                            "Double"
+                          ]
+                        },
+                        {
+                          "type": "dropdown",
+                          "name": "hatcoHzmsSlantedWidth",
+                          "title": "Width:",
+                          "choices": [
+                            "24\"",
+                            "30\"",
+                            "36\"",
+                            "42\"",
+                            "48\"",
+                            "54\""
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "hatcoHzmsSlantedReportLink",
+                          "html": "<a href='https://hatcocorp.com/hzms-slanted'>Manufacturer Report Link - HZMS Slanted Merchandisers</a>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "panel",
+                  "name": "speedOvensPaniniPresses",
+                  "visibleIf": "{Serving Line Details[0].AdditionalSupportEquipmentCheckbox} allof ['Speed Ovens, Panini Presses & Ventless Pizza Ovens']",
+                  "title": "Speed Ovens, Panini Presses & Ventless Pizza Ovens:",
+                  "elements": [
+                    {
+                      "type": "checkbox",
+                      "name": "speedOvensPaniniPressesOptions",
+                      "title": "Choose your options:",
+                      "choices": [
+                        "Middleby-Marshall Ventless Electric Pizza Ovens",
+                        "TurboChef Ventless High Speed Ovens by Mod-U-Serve",
+                        "Other Speed Oven & Panini Press Needs"
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "middlebyMarshall",
+                      "visibleIf": "{Serving Line Details[0].speedOvensPaniniPressesOptions} allof ['Middleby-Marshall Ventless Electric Pizza Ovens']",
+                      "title": "Middleby-Marshall Ventless Electric Pizza Ovens",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "middlebyMarshallHeatingZone",
+                          "title": "20\" Heating Zone Baking Chamber (48.4\" length x 35.8\" depth)",
+                          "choices": [
+                            "PS2020 Electric Conveyor Oven with Catalytic Converter for Ventless"
+                          ]
+                        },
+                        {
+                          "type": "radiogroup",
+                          "name": "middlebyMarshallPartitionRequired",
+                          "title": "Is a decorative partition required at the Pizza Oven?",
+                          "choices": [
+                            "3-Sided Frosted Vertical Glass",
+                            "3-Sided 3-Form Vertical Partition",
+                            "3-Sided Laminate Partition",
+                            "3-Sided Tiled Partition",
+                            "Other",
+                            "N/A"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "middlebyMarshallReportLink",
+                          "html": "<a href='https://www.middlebymarshall.com/wp-content/uploads/2022/02/DOC-1027C-Middleby-Marshall-PS2020-Electric-Ventless-Ovens.pdf'>Manufacturer Report Link - PS2020</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "panel",
+                      "name": "turboChefVentlessHighSpeedOvens",
+                      "visibleIf": "{Serving Line Details[0].speedOvensPaniniPressesOptions} allof ['TurboChef Ventless High Speed Ovens by Mod-U-Serve']",
+                      "title": "TurboChef Ventless High Speed Ovens by Mod-U-Serve",
+                      "elements": [
+                        {
+                          "type": "radiogroup",
+                          "name": "turboChefElBandido",
+                          "title": "7.2\" tall x 12.5\" wide x 10.5\" deep Cook Chamber PANINI PRESS El Bandido",
+                          "choices": [
+                            "3-Sided Frosted Vertical Glass",
+                            "3-Sided 3-Form Vertical Partition",
+                            "3-Sided Laminate Partition",
+                            "3-Sided Tiled Partition",
+                            "Other",
+                            "N/A"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "turboChefElBandidoReportLink",
+                          "html": "<a href='https://turbochef.com/wp-content/uploads/2020/03/TurboChef_ElBandido_PaniniPress_RapidCook_SpecSheet_1-1.pdf'>Manufacturer Report Link - El Bandido</a>"
+                        },
+                        {
+                          "type": "radiogroup",
+                          "name": "turboChefSota",
+                          "title": "6\" tall x 15.5\" wide x 14.5\" deep Cook Chamber Sota(i1)",
+                          "choices": [
+                            "3-Sided Frosted Vertical Glass",
+                            "3-Sided 3-Form Vertical Partition",
+                            "3-Sided Laminate Partition",
+                            "3-Sided Tiled Partition",
+                            "Other",
+                            "N/A"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "turboChefSotaReportLink",
+                          "html": "<a href='https://turbochef.com/wp-content/uploads/2017/11/TurboChef_Sota_SpecSheet_1.pdf'>Manufacturer Report Link - Sota(i1)</a>"
+                        },
+                        {
+                          "type": "radiogroup",
+                          "name": "turboChefBullet",
+                          "title": "6\" tall x 15.5\" wide x 14.5\" deep Cook Chamber Bullet",
+                          "choices": [
+                            "3-Sided Frosted Vertical Glass",
+                            "3-Sided 3-Form Vertical Partition",
+                            "3-Sided Laminate Partition",
+                            "3-Sided Tiled Partition",
+                            "Other",
+                            "N/A"
+                          ]
+                        },
+                        {
+                          "type": "html",
+                          "name": "turboChefBulletReportLink",
+                          "html": "<a href='https://turbochef.com/wp-content/uploads/2023/11/TurboChef_Bullet_SpecSheet_DOC1486_M_1.pdf'>Manufacturer Report Link - Bullet</a>"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "name": "otherSpeedOvenPaniniPressNeeds",
+                      "visibleIf": "{Serving Line Details[0].speedOvensPaniniPressesOptions} allof ['Other Speed Oven & Panini Press Needs']",
+                      "title": "Other Speed Oven & Panini Press Needs:"
                     }
                   ]
                 }
@@ -2523,6 +3214,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "confirmDelete": true,
           "panelAddText": "Add Service Line",
           "panelRemoveText": "Remove Service Line",
+          "showRangeInProgress": false,
           "renderMode": "tab",
           "tabAlign": "left"
         }
@@ -2545,6 +3237,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   survey.onAfterRenderQuestion.add(function (survey, options) {
             var questionElement = options.htmlElement;
+
+            // Skip applying the custom layout for questions within dynamic panels
+            if (options.question.isContentElement || options.question.getType() === "paneldynamic") {
+                return;
+            }
 
             // Create a new container for the custom layout
             var surveyRow = document.createElement("div");

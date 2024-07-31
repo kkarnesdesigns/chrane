@@ -3230,7 +3230,36 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
       const survey = new Survey.Model(surveyJSON);
+const storageItemKey = "my-survey";
 
+function saveSurveyData (survey) {
+    const data = survey.data;
+    data.pageNo = survey.currentPageNo;
+    window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+}
+const survey = new Survey.Model(json);
+survey.onComplete.add((sender, options) => {
+    console.log(JSON.stringify(sender.data, null, 3));
+});
+// Save survey results to the local storage
+survey.onValueChanged.add(saveSurveyData);
+survey.onCurrentPageChanged.add(saveSurveyData);
+
+// Restore survey results
+const prevData = window.localStorage.getItem(storageItemKey) || null;
+if (prevData) {
+    const data = JSON.parse(prevData);
+    survey.data = data;
+    if (data.pageNo) {
+        survey.currentPageNo = data.pageNo;
+    }
+}
+
+// Empty the local storage after the survey is completed
+survey.onComplete.add(() => {
+    window.localStorage.setItem(storageItemKey, "");
+});
+        //Added Save function above this
       // Apply the custom theme to the survey instance
       survey.applyTheme(themeJson);
       console.log("Theme applied");

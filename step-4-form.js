@@ -160,20 +160,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 {
                   "type": "boolean",
-                  "name": "Type of Service for Line.Ice Service",
-                  "title": "Ice Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
                   "name": "Type of Service for Line.Other Service",
-                  "startWithNewLine": false,
                   "title": "Other Service",
                   "isRequired": true
                 },
                 {
                   "type": "boolean",
                   "name": "Type of Service for Line.AdditionalSupport",
+                  "startWithNewLine": false,
                   "title": "Additional Support Equipment Needs",
                   "description": "(ex. refrigerated merchandisers, speed ovens, panini presses, deep cook chambers, etc.)",
                   "isRequired": true
@@ -184,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "type": "panel",
               "name": "HotServicePanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot Service} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.Hot Service} = true",
               "title": "Hot Service",
               "state": "expanded",
               "elements": [
@@ -833,8 +828,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "ColdServicePanel",
-              "visibleIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Column 3} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Column 3} = true",
+              "visibleIf": "{Serving Line Details[0].Type of Service for Line.Cold Service} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.Cold Service} = true",
               "title": "Cold Service",
               "state": "expanded",
               "elements": [
@@ -1133,7 +1128,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "type": "panel",
               "name": "CombinedHotColdServicePanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot/Cold Service} = true",
-              "requiredIf": "{Serving Line Details[0].Serving Line Types[0].TypeofServiceLine.Type of Service for Line.Hot/Cold Service} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.Hot/Cold Service} = true",
               "title": "Combined Hot/Cold Service",
               "state": "expanded",
               "elements": [
@@ -1573,6 +1568,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "type": "panel",
               "name": "BeverageServicePanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true",
               "title": "Beverage Service",
               "elements": [
                 {
@@ -2102,6 +2098,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "type": "panel",
               "name": "OtherServicesPanel",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Other Service} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.Other Service} = true",
               "title": "Other Services",
               "state": "expanded",
               "elements": [
@@ -2738,6 +2735,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "type": "panel",
               "name": "additionalSupportEquipmentNeeds",
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.AdditionalSupport} = true",
+              "requiredIf": "{Serving Line Details[0].Type of Service for Line.AdditionalSupport} = true",
               "title": "Additional Support Equipment Needs on the Serving Line or in the Kitchen:",
               "state": "expanded",
               "elements": [
@@ -3230,7 +3228,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
       const survey = new Survey.Model(surveyJSON);
-const storageItemKey = "my-survey";
+const storageItemKey = "step-4-survey";
 
 
         //Added Save function above this

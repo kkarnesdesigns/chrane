@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
   "loadingHtml": "<h3>Loading Serving Line Details form...</h3>",
   "pages": [
     {
-      "name": "HotService",
+      "name": "ServingLineIntakeForm",
       "elements": [
         {
           "type": "paneldynamic",
@@ -136,66 +136,59 @@ document.addEventListener("DOMContentLoaded", function() {
               "title": "Name of Serving Line"
             },
             {
-              "type": "panel",
-              "name": "ServiceLineTypesPanel",
-              "colSpan": 4,
-              "elements": [
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.Hot Service",
-                  "title": "Hot Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.Cold Service",
-                  "startWithNewLine": false,
-                  "title": "Cold Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.Hot/Cold Service",
-                  "title": "Hot/Cold Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.Beverage Service",
-                  "startWithNewLine": false,
-                  "title": "Beverage Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.Other Service",
-                  "title": "Other Service",
-                  "isRequired": true
-                },
-                {
-                  "type": "boolean",
-                  "name": "Type of Service for Line.AdditionalSupport",
-                  "startWithNewLine": false,
-                  "title": "Additional Support Equipment Needs",
-                  "description": "(ex. refrigerated merchandisers, speed ovens, panini presses, deep cook chambers, etc.)",
-                  "isRequired": true
-                },
-                {
-                  "type": "ranking",
-                  "name": "LineFlow",
-                  "title": "Place the service types in the correct order of flow for this service line:",
-                  "choices": [],
-                  "isRequired": true,
-                  "selectToRankEnabled": true,
-                  "selectToRankAreasLayout": "vertical"
-                }
+              "type": "checkbox",
+              "name": "TypeofServiceforLine",
+              "title": "Select your needed types of service",
+              "isRequired": true,
+              "choices": [
+                "Hot Service",
+                "Cold Service",
+                "Hot/Cold Service",
+                "Beverage Service",
+                "Other Service",
+                "Additional Support Equipment"
               ]
+            },
+            {
+              "type": "ranking",
+              "name": "question1",
+              "title": "Arrange services in the correct flow order for this line:",
+              "choices": [
+                {
+                  "value": "Hot Service",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Hot Service']"
+                },
+                {
+                  "value": "Cold Service",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Cold Service']"
+                },
+                {
+                  "value": "Hot/Cold Service",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Hot/Cold Service']"
+                },
+                {
+                  "value": "Beverage Service",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Beverage Service']"
+                },
+                {
+                  "value": "Other Service",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Other Service']"
+                },
+                {
+                  "value": "Additional Support Equipment",
+                  "visibleIf": "{panel.TypeofServiceforLine} allof ['Additional Support Equipment']"
+                }
+              ],
+              "choiceValuesFromQuestion": "{panel{panelIndex}.TypeofServiceforLine}",
+              "choiceTextsFromQuestion": "{panel{panelIndex}.TypeofServiceforLine}",
+              "selectToRankEnabled": true,
+              "selectToRankAreasLayout": "vertical"
             },
             {
               "type": "panel",
               "name": "HotServicePanel",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.Hot Service} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.Hot Service} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot Service']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot Service']",
               "title": "Hot Service",
               "state": "expanded",
               "elements": [
@@ -845,8 +838,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "ColdServicePanel",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.Cold Service} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.Cold Service} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Cold Service']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Cold Service']",
               "title": "Cold Service",
               "state": "expanded",
               "elements": [
@@ -1144,8 +1137,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "CombinedHotColdServicePanel",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.Hot/Cold Service} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.Hot/Cold Service} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot/Cold Service']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot/Cold Service']",
               "title": "Combined Hot/Cold Service",
               "state": "expanded",
               "elements": [
@@ -1584,8 +1577,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "BeverageServicePanel",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.Beverage Service} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.Beverage Service} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Beverage Service']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Beverage Service']",
               "title": "Beverage Service",
               "state": "expanded",
               "elements": [
@@ -2115,8 +2108,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "OtherServicesPanel",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.Other Service} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.Other Service} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Other Service']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Other Service']",
               "title": "Other Services",
               "state": "expanded",
               "elements": [
@@ -2752,8 +2745,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "additionalSupportEquipmentNeeds",
-              "visibleIf": "{ServingLineDetails[0].Type of Service for Line.AdditionalSupport} = true",
-              "requiredIf": "{ServingLineDetails[0].Type of Service for Line.AdditionalSupport} = true",
+              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Additional Support Equipment']",
+              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Additional Support Equipment']",
               "title": "Additional Support Equipment Needs on the Serving Line or in the Kitchen:",
               "state": "expanded",
               "elements": [
@@ -3307,34 +3300,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(JSON.stringify(sender.data, null, 3));
             window.localStorage.setItem(storageItemKey, "");
         });
-
-        survey.onValueChanged.add(function (sender, options) {
-      var dynamicPanel = sender.getPanelByQuestion(options.question);
-      if (!dynamicPanel) return;
-
-      var serviceLineTypesPanel = dynamicPanel.getElementByName("ServiceLineTypesPanel");
-      if (!serviceLineTypesPanel) return;
-
-      var choices = [];
-      var fieldNames = [
-        "Type of Service for Line.Hot Service",
-        "Type of Service for Line.Cold Service",
-        "Type of Service for Line.Hot/Cold Service",
-        "Type of Service for Line.Beverage Service",
-        "Type of Service for Line.Other Service",
-        "Type of Service for Line.AdditionalSupport"
-      ];
-
-      fieldNames.forEach(function (fieldName) {
-        var question = serviceLineTypesPanel.getQuestionByName(fieldName);
-        if (question && question.value === true) {
-          choices.push(question.title);
-        }
-      });
-
-      var rankingQuestion = dynamicPanel.getQuestionByName("LineFlow");
-      rankingQuestion.choices = choices;
-    });
 
 
       survey.render("surveyContainer");

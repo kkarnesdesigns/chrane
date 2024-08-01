@@ -3307,12 +3307,13 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(JSON.stringify(sender.data, null, 3));
             window.localStorage.setItem(storageItemKey, "");
         });
-       survey.onValueChanged.add(function (sender, options) {
-      var panelDynamic = sender.getPanelByQuestion(options.question);
-      if (!panelDynamic) return;
 
-      var panel = panelDynamic.getElementByName("ServiceLineTypesPanel");
-      if (!panel) return;
+        survey.onValueChanged.add(function (sender, options) {
+      var dynamicPanel = sender.getPanelByQuestion(options.question);
+      if (!dynamicPanel) return;
+
+      var serviceLineTypesPanel = dynamicPanel.getElementByName("ServiceLineTypesPanel");
+      if (!serviceLineTypesPanel) return;
 
       var choices = [];
       var fieldNames = [
@@ -3325,15 +3326,16 @@ document.addEventListener("DOMContentLoaded", function() {
       ];
 
       fieldNames.forEach(function (fieldName) {
-        var question = panel.getQuestionByName(fieldName);
-        if (question.value === true) {
+        var question = serviceLineTypesPanel.getQuestionByName(fieldName);
+        if (question && question.value === true) {
           choices.push(question.title);
         }
       });
 
-      var rankingQuestion = panelDynamic.getQuestionByName("LineFlow");
+      var rankingQuestion = dynamicPanel.getQuestionByName("LineFlow");
       rankingQuestion.choices = choices;
     });
+
 
       survey.render("surveyContainer");
     } else {

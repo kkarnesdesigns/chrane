@@ -3288,7 +3288,26 @@ document.addEventListener("DOMContentLoaded", function() {
             questionElement.appendChild(surveyRow);
         });
 
-        survey.onValueChanged.add(function (sender, options) {
+        // Save survey results to the local storage
+        survey.onValueChanged.add(saveSurveyData);
+        survey.onCurrentPageChanged.add(saveSurveyData);
+
+        // Restore survey results
+        const prevData = window.localStorage.getItem(storageItemKey) || null;
+        if (prevData) {
+            const data = JSON.parse(prevData);
+            survey.data = data;
+            if (data.pageNo) {
+                survey.currentPageNo = data.pageNo;
+            }
+        }
+
+        // Log survey results and empty the local storage after the survey is completed
+        survey.onComplete.add((sender) => {
+            console.log(JSON.stringify(sender.data, null, 3));
+            window.localStorage.setItem(storageItemKey, "");
+        });
+       survey.onValueChanged.add(function (sender, options) {
       var panelDynamic = sender.getPanelByQuestion(options.question);
       if (!panelDynamic) return;
 
@@ -3315,26 +3334,6 @@ document.addEventListener("DOMContentLoaded", function() {
       var rankingQuestion = panelDynamic.getQuestionByName("LineFlow");
       rankingQuestion.choices = choices;
     });
-        // Save survey results to the local storage
-        survey.onValueChanged.add(saveSurveyData);
-        survey.onCurrentPageChanged.add(saveSurveyData);
-
-        // Restore survey results
-        const prevData = window.localStorage.getItem(storageItemKey) || null;
-        if (prevData) {
-            const data = JSON.parse(prevData);
-            survey.data = data;
-            if (data.pageNo) {
-                survey.currentPageNo = data.pageNo;
-            }
-        }
-
-        // Log survey results and empty the local storage after the survey is completed
-        survey.onComplete.add((sender) => {
-            console.log(JSON.stringify(sender.data, null, 3));
-            window.localStorage.setItem(storageItemKey, "");
-        });
-       
 
       survey.render("surveyContainer");
     } else {

@@ -188,8 +188,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "HotServicePanel",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot Service']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot Service']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Hot Service']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Hot Service']",
               "title": "Hot Service",
               "state": "expanded",
               "elements": [
@@ -216,8 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeIndividualHotWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells']",
                   "title": "Mod-U-Serve Individual 12\\\" x 20\\\" Hot Wells",
                   "state": "expanded",
                   "elements": [
@@ -274,9 +274,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthHotWells",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredHotWells} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredHotWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredHotWells} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredHotWells} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -290,9 +290,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthHotWells",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredHotWells} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredHotWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredHotWells} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredHotWells} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -332,8 +332,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeBulkBainMarieHotWellPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot Well']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot Well']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot Well']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot Well']",
                   "title": "Mod-U-Serve Bulk Bain-Marie Style Hot Well",
                   "state": "expanded",
                   "elements": [
@@ -439,8 +439,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CookTekInductionWaterlessHotWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['CookTek Induction Waterless Hot Wells (provided by MUS)']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['CookTek Induction Waterless Hot Wells (provided by MUS)']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['CookTek Induction Waterless Hot Wells (provided by MUS)']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['CookTek Induction Waterless Hot Wells (provided by MUS)']",
                   "title": "Cook Tek Induction Waterless Hot Wells",
                   "state": "expanded",
                   "elements": [
@@ -487,9 +487,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthCookTek",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredCookTek} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredCookTek} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredCookTek} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredCookTek} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -503,9 +503,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthCookTek",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredCookTek} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredCookTek} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredCookTek} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredCookTek} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -550,8 +550,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "AltoShaamWaterlessHotWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Alto-Shaam Waterless Hot Wells (provided by MUS)']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Alto-Shaam Waterless Hot Wells (provided by MUS)']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Alto-Shaam Waterless Hot Wells (provided by MUS)']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Alto-Shaam Waterless Hot Wells (provided by MUS)']",
                   "title": "Alto Shaam Waterless Hot Wells",
                   "state": "expanded",
                   "elements": [
@@ -598,9 +598,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthAltoShaam",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredAltoShaam} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredAltoShaam} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredAltoShaam} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredAltoShaam} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -614,9 +614,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthAltoShaam",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredAltoShaam} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredAltoShaam} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredAltoShaam} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredAltoShaam} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -661,8 +661,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HotFoodSheetPanUnitsPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Hot Food Sheet Pan Units']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Hot Food Sheet Pan Units']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Hot Food Sheet Pan Units']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Hot Food Sheet Pan Units']",
                   "title": "Hot Food Sheet Pan Units",
                   "state": "expanded",
                   "elements": [
@@ -679,16 +679,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponents",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvided} = 'Elevated' or {panel.HeightUnitsProvided} = 'Both'",
                       "title": "Describe Located above what Components?",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'"
+                      "requiredIf": "{panel.HeightUnitsProvided} = 'Elevated' or {panel.HeightUnitsProvided} = 'Both'"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterial",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvided} = 'Elevated'",
                       "title": "Select Overshelf Material",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Elevated'",
+                      "requiredIf": "{panel.HeightUnitsProvided} = 'Elevated'",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Heated Sheet Pan Unit (Standard)",
                         "Glass Overshelf with built-in Heated Stainless Steel Sheet Pan Unit",
@@ -738,9 +738,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredSheetPan} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredSheetPan} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredSheetPan} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -760,9 +760,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvided} = 'Counter Height' or {panel.HeightUnitsProvided} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvided} = 'Counter Height' or {panel.HeightUnitsProvided} = 'Both'",
                       "choices": [
                         "Yes",
                         "No"
@@ -771,9 +771,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvided} = 'Counter Height' or {panel.HeightUnitsProvided} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvided} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvided} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvided} = 'Counter Height' or {panel.HeightUnitsProvided} = 'Both'",
                       "choices": [
                         "None",
                         "Side Mount for adjacent Milk Cooler or Other Equipment",
@@ -799,8 +799,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HeatedMailSlotMerchandiserPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Heated Mail Slot Merchandiser']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Heated Mail Slot Merchandiser']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Heated Mail Slot Merchandiser']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Heated Mail Slot Merchandiser']",
                   "title": "Heated Mail Slot Merchandiser",
                   "state": "expanded",
                   "elements": [
@@ -845,8 +845,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherHotComponentPanel",
-                  "visibleIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Other Hot Component']",
-                  "requiredIf": "{ServingLineDetails[0].HotServiceComponentTypes} allof ['Other Hot Component']",
+                  "visibleIf": "{panel.HotServiceComponentTypes} allof ['Other Hot Component']",
+                  "requiredIf": "{panel.HotServiceComponentTypes} allof ['Other Hot Component']",
                   "title": "Other Hot Component",
                   "state": "expanded",
                   "elements": [
@@ -862,8 +862,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "ColdServicePanel",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Cold Service']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Cold Service']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Cold Service']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Cold Service']",
               "title": "Cold Service",
               "state": "expanded",
               "elements": [
@@ -887,8 +887,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeColdWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Mod-U-Serve Cold Wells']",
-                  "requiredIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Mod-U-Serve Cold Wells']",
+                  "visibleIf": "{panel.ColdServiceComponentTypes} allof ['Mod-U-Serve Cold Wells']",
+                  "requiredIf": "{panel.ColdServiceComponentTypes} allof ['Mod-U-Serve Cold Wells']",
                   "title": "Mod-U-Serve Cold Wells",
                   "state": "expanded",
                   "elements": [
@@ -935,9 +935,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthColdWell",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredColdWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredColdWell} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredColdWell} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -951,9 +951,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthColdWell",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredColdWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredColdWell} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredColdWell} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -984,8 +984,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ColdFoodSheetPanUnitsPanel",
-                  "visibleIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Cold Food Sheet Pan Units']",
-                  "requiredIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Cold Food Sheet Pan Units']",
+                  "visibleIf": "{panel.ColdServiceComponentTypes} allof ['Cold Food Sheet Pan Units']",
+                  "requiredIf": "{panel.ColdServiceComponentTypes} allof ['Cold Food Sheet Pan Units']",
                   "title": "Cold Food Sheet Pan Units",
                   "state": "expanded",
                   "elements": [
@@ -1002,16 +1002,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponentsColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "Describe Located above what Components?",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'"
+                      "requiredIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterialColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "title": "Select Overshelf Material",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
+                      "requiredIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Cold Food Sheet Pan Unit (Standard)",
                         "Glass Overshelf with built-in Cold Food Stainless Steel Sheet Pan Unit",
@@ -1022,9 +1022,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "IfElevatedColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "title": "If Elevated",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Elevated'",
+                      "requiredIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Elevated'",
                       "choices": [
                         "One (1) Elevated Tier",
                         "Two (2) Elevated Tiers"
@@ -1077,16 +1077,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredColdSheetPan} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredColdSheetPan} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredColdSheetPan} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredColdSheetPan} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "choices": [
                         "Yes",
                         "No"
@@ -1095,9 +1095,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedColdSheetPan} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvidedColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedColdSheetPan} = 'Both'",
                       "choices": [
                         "None",
                         "Side Mount for adjacent Milk Cooler or Other Equipment",
@@ -1114,8 +1114,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "RefrigeratedMailSlotMerchandiserPanel",
-                  "visibleIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Refrigerated Mail Slot Merchandiser']",
-                  "requiredIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Refrigerated Mail Slot Merchandiser']",
+                  "visibleIf": "{panel.ColdServiceComponentTypes} allof ['Refrigerated Mail Slot Merchandiser']",
+                  "requiredIf": "{panel.ColdServiceComponentTypes} allof ['Refrigerated Mail Slot Merchandiser']",
                   "title": "Refrigerated Mail Slot Merchandiser",
                   "state": "expanded",
                   "elements": [
@@ -1160,8 +1160,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherColdComponentPanel",
-                  "visibleIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Other Cold Component']",
-                  "requiredIf": "{ServingLineDetails[0].ColdServiceComponentTypes} allof ['Other Cold Component']",
+                  "visibleIf": "{panel.ColdServiceComponentTypes} allof ['Other Cold Component']",
+                  "requiredIf": "{panel.ColdServiceComponentTypes} allof ['Other Cold Component']",
                   "title": "Other Cold Component",
                   "elements": [
                     {
@@ -1176,8 +1176,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "CombinedHotColdServicePanel",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot/Cold Service']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Hot/Cold Service']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Hot/Cold Service']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Hot/Cold Service']",
               "title": "Combined Hot/Cold Service",
               "state": "expanded",
               "elements": [
@@ -1202,8 +1202,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeIndividualHotColdWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Individual Hot / Cold Wells']",
-                  "requiredIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Individual Hot / Cold Wells']",
+                  "visibleIf": "{panel.CombinedServiceComponentTypes} allof ['Mod-U-Serve Individual Hot / Cold Wells']",
+                  "requiredIf": "{panel.CombinedServiceComponentTypes} allof ['Mod-U-Serve Individual Hot / Cold Wells']",
                   "title": "Mod-U-Serve Individual Hot / Cold Wells",
                   "state": "expanded",
                   "elements": [
@@ -1251,9 +1251,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthHotColdWells",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredHotColdWells} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredHotColdWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredHotColdWells} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredHotColdWells} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1267,9 +1267,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthHotColdWells",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredHotColdWells} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredHotColdWells} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredHotColdWells} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredHotColdWells} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1300,8 +1300,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeBulkBainMarieHotColdWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells']",
-                  "requiredIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells']",
+                  "visibleIf": "{panel.CombinedServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells']",
+                  "requiredIf": "{panel.CombinedServiceComponentTypes} allof ['Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells']",
                   "title": "Mod-U-Serve Bulk Bain-Marie Style Hot/Cold Wells",
                   "state": "expanded",
                   "elements": [
@@ -1347,9 +1347,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthBulkHotColdWell",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredBulkHotColdWell} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1363,9 +1363,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthBulkHotColdWell",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredBulkHotColdWell} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1396,8 +1396,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "LTIQuickSwitchHotColdFreezeWellsPanel",
-                  "visibleIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)']",
-                  "requiredIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)']",
+                  "visibleIf": "{panel.CombinedServiceComponentTypes} allof ['LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)']",
+                  "requiredIf": "{panel.CombinedServiceComponentTypes} allof ['LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells (by MUS)']",
                   "title": "LTI Quick Switch Individual Hot / Cold / Freeze Waterless Wells",
                   "state": "expanded",
                   "elements": [
@@ -1433,9 +1433,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayStorageFlatTopWidthLTIQuickSwitch",
-                      "visibleIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'",
+                      "visibleIf": "{panel.TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'"
+                      "requiredIf": "{panel.TrayStorageFlatTopRequiredLTIQuickSwitch} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1449,9 +1449,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "TrayPassFlatTopWidthLTIQuickSwitch",
-                      "visibleIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'",
+                      "visibleIf": "{panel.TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'",
                       "title": "Specify Approximate Width in Inches",
-                      "requiredIf": "{ServingLineDetails[0].TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'"
+                      "requiredIf": "{panel.TrayPassFlatTopRequiredLTIQuickSwitch} = 'Yes'"
                     },
                     {
                       "type": "radiogroup",
@@ -1487,8 +1487,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "HotColdFoodSheetPanUnitsPanel",
-                  "visibleIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Hot / Cold Food Sheet Pan Units']",
-                  "requiredIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Hot / Cold Food Sheet Pan Units']",
+                  "visibleIf": "{panel.CombinedServiceComponentTypes} allof ['Hot / Cold Food Sheet Pan Units']",
+                  "requiredIf": "{panel.CombinedServiceComponentTypes} allof ['Hot / Cold Food Sheet Pan Units']",
                   "title": "Hot / Cold Food Sheet Pan Units",
                   "state": "expanded",
                   "elements": [
@@ -1505,16 +1505,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "DescribeLocatedAboveComponentsHotColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "Describe Located above what Components?",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'"
+                      "requiredIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'"
                     },
                     {
                       "type": "radiogroup",
                       "name": "SelectOvershelfMaterialHotColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "title": "Select Overshelf Material",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
+                      "requiredIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "choices": [
                         "Stainless Steel Overshelf with built-in Stainless Steel Hot/Cold Sheet Pan Unit (Standard)",
                         "Glass Overshelf with built-in Hot/Cold Stainless Steel Sheet Pan Unit",
@@ -1525,9 +1525,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "IfElevatedHotColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
+                      "visibleIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "title": "If Elevated",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
+                      "requiredIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Elevated'",
                       "choices": [
                         "One (1) Elevated Tier",
                         "Two (2) Elevated Tiers"
@@ -1587,9 +1587,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "RearDropDownWorkshelfHotColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "Rear Drop-Down Workshelf",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "choices": [
                         "Yes",
                         "No"
@@ -1598,9 +1598,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "ConvenienceOutletHotColdSheetPan",
-                      "visibleIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
+                      "visibleIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "title": "120 Volt Convenience Outlet (Check all that apply)",
-                      "requiredIf": "{ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {ServingLineDetails[0].HeightUnitsProvidedHotColdSheetPan} = 'Both'",
+                      "requiredIf": "{panel.HeightUnitsProvidedHotColdSheetPan} = 'Counter Height' or {panel.HeightUnitsProvidedHotColdSheetPan} = 'Both'",
                       "choices": [
                         "None",
                         "Side Mount for adjacent Milk Cooler or Other Equipment",
@@ -1617,8 +1617,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherHotColdComponentPanel",
-                  "visibleIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Other Hot/Cold Component']",
-                  "requiredIf": "{ServingLineDetails[0].CombinedServiceComponentTypes} allof ['Other Hot/Cold Component']",
+                  "visibleIf": "{panel.CombinedServiceComponentTypes} allof ['Other Hot/Cold Component']",
+                  "requiredIf": "{panel.CombinedServiceComponentTypes} allof ['Other Hot/Cold Component']",
                   "title": "Other Hot/Cold Component",
                   "state": "expanded",
                   "elements": [
@@ -1634,8 +1634,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "BeverageServicePanel",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Beverage Service']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Beverage Service']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Beverage Service']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Beverage Service']",
               "title": "Beverage Service",
               "state": "expanded",
               "elements": [
@@ -1662,8 +1662,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeDropInBeverageUnitPanel",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Drop-In Beverage Unit']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Drop-In Beverage Unit']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Mod-U-Serve Drop-In Beverage Unit']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Mod-U-Serve Drop-In Beverage Unit']",
                   "title": "Mod-U-Serve Drop-In Beverage Unit",
                   "state": "expanded",
                   "elements": [
@@ -1699,8 +1699,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "ModUServeMilkCoolerPanel",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Milk Cooler (Milk Crate)']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Mod-U-Serve Milk Cooler (Milk Crate)']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Mod-U-Serve Milk Cooler (Milk Crate)']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Mod-U-Serve Milk Cooler (Milk Crate)']",
                   "title": "Mod-U-Serve Milk Cooler",
                   "state": "expanded",
                   "elements": [
@@ -1716,8 +1716,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "FreeStandingMilkCoolerPanel",
-                      "visibleIf": "{ServingLineDetails[0].TypeOfMilkCooler} = 'Free Standing'",
-                      "requiredIf": "{ServingLineDetails[0].TypeOfMilkCooler} = 'Free Standing'",
+                      "visibleIf": "{panel.TypeOfMilkCooler} = 'Free Standing'",
+                      "requiredIf": "{panel.TypeOfMilkCooler} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "dropdown",
@@ -1776,8 +1776,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "InlineBuiltInMilkCoolerPanel",
-                      "visibleIf": "{ServingLineDetails[0].TypeOfMilkCooler} = 'Inline Built into Serving Line'",
-                      "requiredIf": "{ServingLineDetails[0].TypeOfMilkCooler} = 'Inline Built into Serving Line'",
+                      "visibleIf": "{panel.TypeOfMilkCooler} = 'Inline Built into Serving Line'",
+                      "requiredIf": "{panel.TypeOfMilkCooler} = 'Inline Built into Serving Line'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -1821,8 +1821,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "MilkCoolerByOtherManufacturerPanel",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)']",
                   "title": "Milk Cooler(s) by Other Manufacturer or Existing Milk Cooler(s)",
                   "state": "expanded",
                   "elements": [
@@ -1841,8 +1841,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "SilverKingBulkMilkDispenserPanel",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Silver King Bulk Milk Dispenser (Provided by Mod-U-Serve)']",
                   "title": "Silver King Bulk Milk Dispenser",
                   "state": "expanded",
                   "elements": [
@@ -1876,8 +1876,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "coffeeService",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Coffee Service']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Coffee Service']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Coffee Service']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Coffee Service']",
                   "title": "Coffee Service",
                   "state": "expanded",
                   "elements": [
@@ -1906,8 +1906,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "partitionOptions",
-                      "visibleIf": "{ServingLineDetails[0].decorativePartition} = 'Yes'",
-                      "requiredIf": "{ServingLineDetails[0].decorativePartition} = 'Yes'",
+                      "visibleIf": "{panel.decorativePartition} = 'Yes'",
+                      "requiredIf": "{panel.decorativePartition} = 'Yes'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -1945,8 +1945,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "smoothieService",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Smoothie or Other Blended Drink/Food Service']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Smoothie or Other Blended Drink/Food Service']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Smoothie or Other Blended Drink/Food Service']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Smoothie or Other Blended Drink/Food Service']",
                   "title": "Smoothie or Other Blended Drink/Food Service",
                   "state": "expanded",
                   "elements": [
@@ -1962,9 +1962,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "blenderOptions",
-                      "visibleIf": "{ServingLineDetails[0].blenderRequired} = 'Yes'",
+                      "visibleIf": "{panel.blenderRequired} = 'Yes'",
                       "title": "Blender Options",
-                      "requiredIf": "{ServingLineDetails[0].blenderRequired} = 'Yes'",
+                      "requiredIf": "{panel.blenderRequired} = 'Yes'",
                       "choices": [
                         "Waring MX1500XTX for Blended Smoothies or Beverages provided by Mod-U-Serve",
                         "Waring MXE2000 Ellipse for Blended Smoothies, Beverages or Acai Bowls provided by Mod-U-Serve",
@@ -1987,9 +1987,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "iceRequirementOptions",
-                      "visibleIf": "{ServingLineDetails[0].iceRequirements} = 'Yes'",
+                      "visibleIf": "{panel.iceRequirements} = 'Yes'",
                       "title": "Ice Requirement Options",
-                      "requiredIf": "{ServingLineDetails[0].iceRequirements} = 'Yes'",
+                      "requiredIf": "{panel.iceRequirements} = 'Yes'",
                       "choices": [
                         "Cambro Model ICS100L4S, 100 lb. Capacity Undercounter Ice Caddy provided by Mod-U-Serve",
                         "Cambro Model ICS125LB, 125 lb. Capacity Undercounter Ice Caddy provided by Mod-U-Serve",
@@ -2018,9 +2018,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "checkbox",
                       "name": "undercounterRefrigerationType",
-                      "visibleIf": "{ServingLineDetails[0].undercounterRefrigeration} = 'Yes'",
+                      "visibleIf": "{panel.undercounterRefrigeration} = 'Yes'",
                       "title": "Undercounter Refrigeration Type",
-                      "requiredIf": "{ServingLineDetails[0].undercounterRefrigeration} = 'Yes'",
+                      "requiredIf": "{panel.undercounterRefrigeration} = 'Yes'",
                       "choices": [
                         "Refrigerator",
                         "Freezer",
@@ -2030,9 +2030,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "undercounterRefrigeratorOptions",
-                      "visibleIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Refrigerator']",
+                      "visibleIf": "{panel.undercounterRefrigerationType} allof ['Refrigerator']",
                       "title": "Utility Refrigerator Undercounter Refrigerator provided by Mod-U-Serve",
-                      "requiredIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Refrigerator']",
+                      "requiredIf": "{panel.undercounterRefrigerationType} allof ['Refrigerator']",
                       "choices": [
                         "Utility Refrigerator One-Door, model CHR-30-1S-D-EM Undercounter Refrigerator",
                         "Utility Refrigerator Two-Door, model CHR-50-2S-D-EM Undercounter Refrigerator",
@@ -2044,9 +2044,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "undercounterFreezerOptions",
-                      "visibleIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Freezer']",
+                      "visibleIf": "{panel.undercounterRefrigerationType} allof ['Freezer']",
                       "title": "Utility Refrigerator Undercounter Freezer provided by Mod-U-Serve",
-                      "requiredIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Freezer']",
+                      "requiredIf": "{panel.undercounterRefrigerationType} allof ['Freezer']",
                       "choices": [
                         "Utility Refrigerator One-Door, model CHF-30-1S-D-EM Undercounter Freezer",
                         "Utility Refrigerator Two-Door, model CHF-50-2S-D-EM Undercounter Freezer",
@@ -2058,8 +2058,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "undercounterRefrigerationTypeOther",
-                      "visibleIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Other']",
-                      "requiredIf": "{ServingLineDetails[0].undercounterRefrigerationType} allof ['Other']",
+                      "visibleIf": "{panel.undercounterRefrigerationType} allof ['Other']",
+                      "requiredIf": "{panel.undercounterRefrigerationType} allof ['Other']",
                       "title": "Specify Manufacturer, Model & Quantity",
                       "elements": [
                         {
@@ -2091,9 +2091,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "partitionTypeSmoothie",
-                      "visibleIf": "{ServingLineDetails[0].partitionOptionsSmoothie} = 'Yes'",
+                      "visibleIf": "{panel.partitionOptionsSmoothie} = 'Yes'",
                       "title": "If Yes:",
-                      "requiredIf": "{ServingLineDetails[0].partitionOptionsSmoothie} = 'Yes'",
+                      "requiredIf": "{panel.partitionOptionsSmoothie} = 'Yes'",
                       "choices": [
                         "3-Sided Frosted Vertical Glass",
                         "3-Sided 3-Form Vertical Partition",
@@ -2131,9 +2131,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "radiogroup",
                       "name": "iceWaterDispenserOptions",
-                      "visibleIf": "{ServingLineDetails[0].iceWaterDispenser} = 'Yes'",
+                      "visibleIf": "{panel.iceWaterDispenser} = 'Yes'",
                       "title": "Choose an Ice & Water Dispenser Option:",
-                      "requiredIf": "{ServingLineDetails[0].iceWaterDispenser} = 'Yes'",
+                      "requiredIf": "{panel.iceWaterDispenser} = 'Yes'",
                       "choices": [
                         "Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)",
                         "Follett Model 50CI425A-S Ice & Water Dispenser provided by Mod-U-Serve"
@@ -2142,8 +2142,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "iceWaterDispenserOptionsTypeOther",
-                      "visibleIf": "{ServingLineDetails[0].iceWaterDispenserOptions} = 'Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)'",
-                      "requiredIf": "{ServingLineDetails[0].iceWaterDispenserOptions} = 'Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)'",
+                      "visibleIf": "{panel.iceWaterDispenserOptions} = 'Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)'",
+                      "requiredIf": "{panel.iceWaterDispenserOptions} = 'Other Manufacturer Ice & Water Dispenser provided by Mod-U-Serve (specify Manufacturer, Model & Quantity)'",
                       "title": "Specify Manufacturer, Model & Quantity",
                       "elements": [
                         {
@@ -2168,8 +2168,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherBeverageNeedsPanel",
-                  "visibleIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Other Beverage Needs']",
-                  "requiredIf": "{ServingLineDetails[0].BeverageServiceComponentTypes} allof ['Other Beverage Needs']",
+                  "visibleIf": "{panel.BeverageServiceComponentTypes} allof ['Other Beverage Needs']",
+                  "requiredIf": "{panel.BeverageServiceComponentTypes} allof ['Other Beverage Needs']",
                   "state": "expanded",
                   "elements": [
                     {
@@ -2184,8 +2184,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "OtherServicesPanel",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Other Service']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Other Service']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Other Service']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Other Service']",
               "title": "Other Services",
               "state": "expanded",
               "elements": [
@@ -2215,8 +2215,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "StainlessSteelSnacksRacksPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Stainless Steel Snacks Racks']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Stainless Steel Snacks Racks']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Stainless Steel Snacks Racks']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Stainless Steel Snacks Racks']",
                   "title": "Stainless Steel Snacks Racks",
                   "state": "expanded",
                   "elements": [
@@ -2249,8 +2249,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "IceCreamServicePanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Ice Cream Service']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Ice Cream Service']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Ice Cream Service']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Ice Cream Service']",
                   "elements": [
                     {
                       "type": "checkbox",
@@ -2265,8 +2265,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "ModUServeDropInIceCreamUnitPanel",
-                      "visibleIf": "{ServingLineDetails[0].IceCreamServiceOptions} allof ['Mod-U-Serve Drop-In Ice Cream Unit']",
-                      "requiredIf": "{ServingLineDetails[0].IceCreamServiceOptions} allof ['Mod-U-Serve Drop-In Ice Cream Unit']",
+                      "visibleIf": "{panel.IceCreamServiceOptions} allof ['Mod-U-Serve Drop-In Ice Cream Unit']",
+                      "requiredIf": "{panel.IceCreamServiceOptions} allof ['Mod-U-Serve Drop-In Ice Cream Unit']",
                       "elements": [
                         {
                           "type": "dropdown",
@@ -2313,8 +2313,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "IceCreamMerchandiserByVendorPanel",
-                      "visibleIf": "{ServingLineDetails[0].IceCreamServiceOptions} allof ['Ice Cream Merchandiser By Vendor']",
-                      "requiredIf": "{ServingLineDetails[0].IceCreamServiceOptions} allof ['Ice Cream Merchandiser By Vendor']",
+                      "visibleIf": "{panel.IceCreamServiceOptions} allof ['Ice Cream Merchandiser By Vendor']",
+                      "requiredIf": "{panel.IceCreamServiceOptions} allof ['Ice Cream Merchandiser By Vendor']",
                       "elements": [
                         {
                           "type": "text",
@@ -2328,8 +2328,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "FlatTopMerchandisingPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Flat Top Merchandising']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Flat Top Merchandising']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Flat Top Merchandising']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Flat Top Merchandising']",
                   "title": "Flat Top Merchandising",
                   "elements": [
                     {
@@ -2393,8 +2393,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "panel",
                           "name": "BuiltInHandwashingOptionsPanel",
-                          "visibleIf": "{ServingLineDetails[0].BuiltInHandwashingRequired} = 'Yes'",
-                          "requiredIf": "{ServingLineDetails[0].BuiltInHandwashingRequired} = 'Yes'",
+                          "visibleIf": "{panel.BuiltInHandwashingRequired} = 'Yes'",
+                          "requiredIf": "{panel.BuiltInHandwashingRequired} = 'Yes'",
                           "elements": [
                             {
                               "type": "text",
@@ -2415,8 +2415,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CashierStandPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Cashier Stand']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Cashier Stand']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Cashier Stand']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Cashier Stand']",
                   "title": "Cashier Stand",
                   "elements": [
                     {
@@ -2454,8 +2454,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "CondimentsStationPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Condiments Station']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Condiments Station']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Condiments Station']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Condiments Station']",
                   "title": "Condiments Station",
                   "elements": [
                     {
@@ -2470,8 +2470,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "CondimentsFreeStandingPanel",
-                      "visibleIf": "{ServingLineDetails[0].CondimentsLocation} = 'Free Standing'",
-                      "requiredIf": "{ServingLineDetails[0].CondimentsLocation} = 'Free Standing'",
+                      "visibleIf": "{panel.CondimentsLocation} = 'Free Standing'",
+                      "requiredIf": "{panel.CondimentsLocation} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -2503,38 +2503,38 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "NumberOfCansDispensed",
-                      "visibleIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['#10 Cans']",
+                      "visibleIf": "{panel.CondimentDispensingNeeds} allof ['#10 Cans']",
                       "title": "Number of Cans Dispensed",
-                      "requiredIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['#10 Cans']"
+                      "requiredIf": "{panel.CondimentDispensingNeeds} allof ['#10 Cans']"
                     },
                     {
                       "type": "text",
                       "name": "NumberOfBagInBoxDispensers",
-                      "visibleIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Bag In Box']",
+                      "visibleIf": "{panel.CondimentDispensingNeeds} allof ['Bag In Box']",
                       "title": "Number of Bag in Box Dispensers",
-                      "requiredIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Bag In Box']"
+                      "requiredIf": "{panel.CondimentDispensingNeeds} allof ['Bag In Box']"
                     },
                     {
                       "type": "text",
                       "name": "NumberOfPortionControlFlavors",
-                      "visibleIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Portion Control Packets']",
+                      "visibleIf": "{panel.CondimentDispensingNeeds} allof ['Portion Control Packets']",
                       "title": "Number of Portion Control Flavors",
-                      "requiredIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Portion Control Packets']"
+                      "requiredIf": "{panel.CondimentDispensingNeeds} allof ['Portion Control Packets']"
                     },
                     {
                       "type": "text",
                       "name": "OtherCondimentDispensingNeeds",
-                      "visibleIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Other']",
+                      "visibleIf": "{panel.CondimentDispensingNeeds} allof ['Other']",
                       "title": "Other Condiment Dispensing Needs",
-                      "requiredIf": "{ServingLineDetails[0].CondimentDispensingNeeds} allof ['Other']"
+                      "requiredIf": "{panel.CondimentDispensingNeeds} allof ['Other']"
                     }
                   ]
                 },
                 {
                   "type": "panel",
                   "name": "TrayCartsPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Tray Carts']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Tray Carts']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Tray Carts']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Tray Carts']",
                   "title": "Tray Carts",
                   "elements": [
                     {
@@ -2594,9 +2594,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "OtherTrayCartsMaterialFinishes",
-                      "visibleIf": "{ServingLineDetails[0].TrayCartsMaterialFinishes} = 'Other'",
+                      "visibleIf": "{panel.TrayCartsMaterialFinishes} = 'Other'",
                       "title": "Specify Other Materials",
-                      "requiredIf": "{ServingLineDetails[0].TrayCartsMaterialFinishes} = 'Other'"
+                      "requiredIf": "{panel.TrayCartsMaterialFinishes} = 'Other'"
                     },
                     {
                       "type": "checkbox",
@@ -2613,8 +2613,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "StudentSharingStationPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Student Sharing Station']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Student Sharing Station']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Student Sharing Station']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Student Sharing Station']",
                   "title": "Student Sharing Station",
                   "elements": [
                     {
@@ -2629,8 +2629,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "StudentSharingStationFreeStandingPanel",
-                      "visibleIf": "{ServingLineDetails[0].StudentSharingStationLocation} = 'Free Standing'",
-                      "requiredIf": "{ServingLineDetails[0].StudentSharingStationLocation} = 'Free Standing'",
+                      "visibleIf": "{panel.StudentSharingStationLocation} = 'Free Standing'",
+                      "requiredIf": "{panel.StudentSharingStationLocation} = 'Free Standing'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -2665,9 +2665,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "OtherStudentSharingStationMaterialFinishes",
-                      "visibleIf": "{ServingLineDetails[0].StudentSharingStationMaterialFinishes} = 'Other'",
+                      "visibleIf": "{panel.StudentSharingStationMaterialFinishes} = 'Other'",
                       "title": "Specify Other Materials",
-                      "requiredIf": "{ServingLineDetails[0].StudentSharingStationMaterialFinishes} = 'Other'"
+                      "requiredIf": "{panel.StudentSharingStationMaterialFinishes} = 'Other'"
                     },
                     {
                       "type": "checkbox",
@@ -2684,8 +2684,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "DecorativeAccentPiecesPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Decorative Accent Pieces']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Decorative Accent Pieces']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Decorative Accent Pieces']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Decorative Accent Pieces']",
                   "title": "Decorative Accent Pieces",
                   "elements": [
                     {
@@ -2707,15 +2707,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "text",
                           "name": "OtherRecessedPlateShelfMaterialFinish",
-                          "visibleIf": "{ServingLineDetails[0].BelowCounterRecessedPlateShelvesFinish} = 'Shelf: Other'",
+                          "visibleIf": "{panel.BelowCounterRecessedPlateShelvesFinish} = 'Shelf: Other'",
                           "title": "Specify Other"
                         },
                         {
                           "type": "text",
                           "name": "OtherThreeSidedRecessMaterialFinish",
-                          "visibleIf": "{ServingLineDetails[0].BelowCounterRecessedPlateShelvesFinish} = '3-Sided Recess: Other'",
+                          "visibleIf": "{panel.BelowCounterRecessedPlateShelvesFinish} = '3-Sided Recess: Other'",
                           "title": "Specify Other",
-                          "requiredIf": "{ServingLineDetails[0].BelowCounterRecessedPlateShelvesFinish} = '3-Sided Recess: Other'"
+                          "requiredIf": "{panel.BelowCounterRecessedPlateShelvesFinish} = '3-Sided Recess: Other'"
                         },
                         {
                           "type": "radiogroup",
@@ -2740,8 +2740,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "BelowCounterRecessedSnackShelvesPanel",
-                      "visibleIf": "{ServingLineDetails[0].BelowCounterRecessedSnackShelves} = 'Yes'",
-                      "requiredIf": "{ServingLineDetails[0].BelowCounterRecessedSnackShelves} = 'Yes'",
+                      "visibleIf": "{panel.BelowCounterRecessedSnackShelves} = 'Yes'",
+                      "requiredIf": "{panel.BelowCounterRecessedSnackShelves} = 'Yes'",
                       "elements": [
                         {
                           "type": "radiogroup",
@@ -2766,8 +2766,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "DecorativePedestalsPanel",
-                      "visibleIf": "{ServingLineDetails[0].DecorativePedestals} = 'Yes'",
-                      "requiredIf": "{ServingLineDetails[0].DecorativePedestals} = 'Yes'",
+                      "visibleIf": "{panel.DecorativePedestals} = 'Yes'",
+                      "requiredIf": "{panel.DecorativePedestals} = 'Yes'",
                       "elements": [
                         {
                           "type": "text",
@@ -2797,9 +2797,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "text",
                           "name": "OtherDecorativePedestalsFinish",
-                          "visibleIf": "{ServingLineDetails[0].DecorativePedestalsFinish} = 'Other'",
+                          "visibleIf": "{panel.DecorativePedestalsFinish} = 'Other'",
                           "title": "Specify Other",
-                          "requiredIf": "{ServingLineDetails[0].DecorativePedestalsFinish} = 'Other'"
+                          "requiredIf": "{panel.DecorativePedestalsFinish} = 'Other'"
                         },
                         {
                           "type": "radiogroup",
@@ -2813,9 +2813,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                           "type": "text",
                           "name": "OtherCapMaterialFinish",
-                          "visibleIf": "{ServingLineDetails[0].DecorativePedestalsCapMaterialFinish} = 'Other'",
+                          "visibleIf": "{panel.DecorativePedestalsCapMaterialFinish} = 'Other'",
                           "title": "Specify Other",
-                          "requiredIf": "{ServingLineDetails[0].DecorativePedestalsCapMaterialFinish} = 'Other'"
+                          "requiredIf": "{panel.DecorativePedestalsCapMaterialFinish} = 'Other'"
                         },
                         {
                           "type": "radiogroup",
@@ -2833,8 +2833,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "OtherNeedsPanel",
-                  "visibleIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Other']",
-                  "requiredIf": "{ServingLineDetails[0].OtherServicesComponentTypes} allof ['Other']",
+                  "visibleIf": "{panel.OtherServicesComponentTypes} allof ['Other']",
+                  "requiredIf": "{panel.OtherServicesComponentTypes} allof ['Other']",
                   "elements": [
                     {
                       "type": "comment",
@@ -2848,8 +2848,8 @@ document.addEventListener("DOMContentLoaded", function() {
             {
               "type": "panel",
               "name": "additionalSupportEquipmentNeeds",
-              "visibleIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Additional Support Equipment']",
-              "requiredIf": "{ServingLineDetails[0].TypeofServiceforLine} allof ['Additional Support Equipment']",
+              "visibleIf": "{panel.TypeofServiceforLine} allof ['Additional Support Equipment']",
+              "requiredIf": "{panel.TypeofServiceforLine} allof ['Additional Support Equipment']",
               "title": "Additional Support Equipment Needs on the Serving Line or in the Kitchen:",
               "state": "expanded",
               "elements": [
@@ -2866,8 +2866,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "refrigeratedMerchandisers",
-                  "visibleIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Refrigerated Merchandisers']",
-                  "requiredIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Refrigerated Merchandisers']",
+                  "visibleIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Refrigerated Merchandisers']",
+                  "requiredIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Refrigerated Merchandisers']",
                   "title": "Refrigerated Merchandisers",
                   "elements": [
                     {
@@ -2885,8 +2885,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "BSISalsaSusanPanel",
-                      "visibleIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['BSI CP-500N Salsa Susan provided by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['BSI CP-500N Salsa Susan provided by Mod-U-Serve']",
+                      "visibleIf": "{panel.RefrigeratedMerchandiserChoices} allof ['BSI CP-500N Salsa Susan provided by Mod-U-Serve']",
+                      "requiredIf": "{panel.RefrigeratedMerchandiserChoices} allof ['BSI CP-500N Salsa Susan provided by Mod-U-Serve']",
                       "title": "BSI CP-500N Salsa Susan provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -2914,8 +2914,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "utilityRefrigeratorFreestanding",
-                      "visibleIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "visibleIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "requiredIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
                       "title": "Utility Refrigerator FREE-STANDING Sliding Glass Door Merchandisers provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -2951,8 +2951,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "utilityRefrigeratorDropin",
-                      "visibleIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "visibleIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
+                      "requiredIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve']",
                       "title": "Utility Refrigerator DROP-IN Sliding Glass Door Merchandisers provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -2988,8 +2988,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "structuralConceptsOasis",
-                      "visibleIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve']",
+                      "visibleIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve']",
+                      "requiredIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve']",
                       "title": "Structural Concepts Oasis Rear-Loading Refrigerated Air-Screen Merchandisers provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -3068,17 +3068,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "otherRefrigeratedMerchandiserNeeds",
-                      "visibleIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Other Refrigerated Merchandiser Needs']",
+                      "visibleIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Other Refrigerated Merchandiser Needs']",
                       "title": "Other Refrigerated Merchandiser Needs:",
-                      "requiredIf": "{ServingLineDetails[0].RefrigeratedMerchandiserChoices} allof ['Other Refrigerated Merchandiser Needs']"
+                      "requiredIf": "{panel.RefrigeratedMerchandiserChoices} allof ['Other Refrigerated Merchandiser Needs']"
                     }
                   ]
                 },
                 {
                   "type": "panel",
                   "name": "countertopHeatedMerchandisers",
-                  "visibleIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Countertop Heated Merchandisers']",
-                  "requiredIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Countertop Heated Merchandisers']",
+                  "visibleIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Countertop Heated Merchandisers']",
+                  "requiredIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Countertop Heated Merchandisers']",
                   "title": "Countertop Heated Merchandisers",
                   "elements": [
                     {
@@ -3094,8 +3094,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "bsiSolera",
-                      "visibleIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['BSI Solera Heated Surfaces provided by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['BSI Solera Heated Surfaces provided by Mod-U-Serve']",
+                      "visibleIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['BSI Solera Heated Surfaces provided by Mod-U-Serve']",
+                      "requiredIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['BSI Solera Heated Surfaces provided by Mod-U-Serve']",
                       "title": "BSI Solera Heated Surfaces provided by Mod-U-Serve:",
                       "elements": [
                         {
@@ -3133,8 +3133,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "hatcoHzmhFlat",
-                      "visibleIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve']",
-                      "requiredIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve']",
+                      "visibleIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve']",
+                      "requiredIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U- Serve']",
                       "title": "Hatco HZMH FLAT Countertop Heated Merchandisers provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -3169,8 +3169,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "hatcoHzmsSlanted",
-                      "visibleIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].CountertopHeatedMerchandiserOptions} allof ['Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve']",
+                      "visibleIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve']",
+                      "requiredIf": "{panel.CountertopHeatedMerchandiserOptions} allof ['Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod- U-Serve']",
                       "title": "Hatco HZMS SLANTED Countertop Heated Merchandisers provided by Mod-U-Serve",
                       "elements": [
                         {
@@ -3207,8 +3207,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 {
                   "type": "panel",
                   "name": "speedOvensPaniniPresses",
-                  "visibleIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Speed Ovens, Panini Presses & Ventless Pizza Ovens']",
-                  "requiredIf": "{ServingLineDetails[0].AdditionalSupportEquipmentCheckbox} allof ['Speed Ovens, Panini Presses & Ventless Pizza Ovens']",
+                  "visibleIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Speed Ovens, Panini Presses & Ventless Pizza Ovens']",
+                  "requiredIf": "{panel.AdditionalSupportEquipmentCheckbox} allof ['Speed Ovens, Panini Presses & Ventless Pizza Ovens']",
                   "title": "Speed Ovens, Panini Presses & Ventless Pizza Ovens:",
                   "elements": [
                     {
@@ -3224,8 +3224,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "middlebyMarshall",
-                      "visibleIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['Middleby-Marshall Ventless Electric Pizza Ovens']",
-                      "requiredIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['Middleby-Marshall Ventless Electric Pizza Ovens']",
+                      "visibleIf": "{panel.speedOvensPaniniPressesOptions} allof ['Middleby-Marshall Ventless Electric Pizza Ovens']",
+                      "requiredIf": "{panel.speedOvensPaniniPressesOptions} allof ['Middleby-Marshall Ventless Electric Pizza Ovens']",
                       "title": "Middleby-Marshall Ventless Electric Pizza Ovens",
                       "elements": [
                         {
@@ -3259,8 +3259,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "panel",
                       "name": "turboChefVentlessHighSpeedOvens",
-                      "visibleIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['TurboChef Ventless High Speed Ovens by Mod-U-Serve']",
-                      "requiredIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['TurboChef Ventless High Speed Ovens by Mod-U-Serve']",
+                      "visibleIf": "{panel.speedOvensPaniniPressesOptions} allof ['TurboChef Ventless High Speed Ovens by Mod-U-Serve']",
+                      "requiredIf": "{panel.speedOvensPaniniPressesOptions} allof ['TurboChef Ventless High Speed Ovens by Mod-U-Serve']",
                       "title": "TurboChef Ventless High Speed Ovens by Mod-U-Serve",
                       "elements": [
                         {
@@ -3322,9 +3322,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     {
                       "type": "text",
                       "name": "otherSpeedOvenPaniniPressNeeds",
-                      "visibleIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['Other Speed Oven & Panini Press Needs']",
+                      "visibleIf": "{panel.speedOvensPaniniPressesOptions} allof ['Other Speed Oven & Panini Press Needs']",
                       "title": "Other Speed Oven & Panini Press Needs:",
-                      "requiredIf": "{ServingLineDetails[0].speedOvensPaniniPressesOptions} allof ['Other Speed Oven & Panini Press Needs']"
+                      "requiredIf": "{panel.speedOvensPaniniPressesOptions} allof ['Other Speed Oven & Panini Press Needs']"
                     }
                   ]
                 }

@@ -643,8 +643,8 @@ document.addEventListener("DOMContentLoaded", function() {
       ]
     }
   ],
+  "showNavigationButtons": "none",
   "showQuestionNumbers": "off",
-  "showProgressBar": "belowheader",
   "progressBarShowPageTitles": true
 }
 

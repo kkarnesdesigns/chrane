@@ -2,6 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (typeof Survey !== 'undefined') {
       console.log("SurveyJS is loaded");
 
+        const storageItemKey = "step-5-form";
+
+        function saveSurveyData (survey) {
+            const data = survey.data;
+            data.pageNo = survey.currentPageNo;
+            window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+        }
+        
       // Custom theme JSON
       const themeJson = {
         "themeName": "custom",
@@ -116,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "type": "panel",
           "name": "electricalDetails",
           "title": "Electrical Details",
+          "showQuestionNumbers": "off",
           "elements": [
             {
               "type": "text",
@@ -656,12 +665,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   ]
 }
-
       const survey = new Survey.Model(surveyJSON);
-const storageItemKey = "step-4-survey";
 
-
-        //Added Save function above this
       // Apply the custom theme to the survey instance
       survey.applyTheme(themeJson);
       console.log("Theme applied");
@@ -701,6 +706,25 @@ const storageItemKey = "step-4-survey";
             // Clear the question element and append the custom row
             questionElement.innerHTML = "";
             questionElement.appendChild(surveyRow);
+        });
+        // Save survey results to the local storage
+        survey.onValueChanged.add(saveSurveyData);
+        survey.onCurrentPageChanged.add(saveSurveyData);
+
+        // Restore survey results
+        const prevData = window.localStorage.getItem(storageItemKey) || null;
+        if (prevData) {
+            const data = JSON.parse(prevData);
+            survey.data = data;
+            if (data.pageNo) {
+                survey.currentPageNo = data.pageNo;
+            }
+        }
+
+        // Log survey results and empty the local storage after the survey is completed
+        survey.onComplete.add((sender) => {
+            console.log(JSON.stringify(sender.data, null, 3));
+            window.localStorage.setItem(storageItemKey, "");
         });
         
        

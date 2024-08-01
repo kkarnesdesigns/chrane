@@ -2,6 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (typeof Survey !== 'undefined') {
       console.log("SurveyJS is loaded");
 
+        const storageItemKey = "step-4-form";
+
+        function saveSurveyData (survey) {
+            const data = survey.data;
+            data.pageNo = survey.currentPageNo;
+            window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+        }
+
       // Custom theme JSON
       const themeJson = {
         "themeName": "custom",
@@ -15,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "--sjs-editorpanel-backcolor": "rgba(255, 255, 255, 1)",
           "--sjs-editorpanel-cornerRadius": "10px",
           "--sjs-corner-radius": "4px",
-          "--sjs-base-unit": "8px",
+          "--sjs-base-unit": "6px",
           "--sjs-shadow-small": "0px 1px 2px 0px rgba(0, 0, 0, 0.15)",
           "--sjs-shadow-inner": "0px 0px 0px 1px rgba(208, 213, 221, 1)",
           "--sjs-border-default": "rgba(0, 0, 0, 0.16)",
@@ -129,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             {
               "type": "panel",
-              "name": "panel1",
+              "name": "ServiceLineTypesPanel",
               "colSpan": 4,
               "elements": [
                 {
@@ -171,6 +179,40 @@ document.addEventListener("DOMContentLoaded", function() {
                   "title": "Additional Support Equipment Needs",
                   "description": "(ex. refrigerated merchandisers, speed ovens, panini presses, deep cook chambers, etc.)",
                   "isRequired": true
+                },
+                {
+                  "type": "ranking",
+                  "name": "LineFlow",
+                  "title": "Place the service types in the correct order of flow for this service line:",
+                  "isRequired": true,
+                  "choices": [
+                    {
+                      "value": "Hot Service",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot Service} = true"
+                    },
+                    {
+                      "value": "Cold Service",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.Cold Service} = true"
+                    },
+                    {
+                      "value": "Hot/Cold Service",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.Hot/Cold Service} = true"
+                    },
+                    {
+                      "value": "Beverage Service",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true"
+                    },
+                    {
+                      "value": "Other Service",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.Other Service} = true"
+                    },
+                    {
+                      "value": "Additional Support Equipment",
+                      "visibleIf": "{Serving Line Details[0].Type of Service for Line.AdditionalSupport} = true"
+                    }
+                  ],
+                  "selectToRankEnabled": true,
+                  "selectToRankAreasLayout": "vertical"
                 }
               ]
             },
@@ -1570,6 +1612,7 @@ document.addEventListener("DOMContentLoaded", function() {
               "visibleIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true",
               "requiredIf": "{Serving Line Details[0].Type of Service for Line.Beverage Service} = true",
               "title": "Beverage Service",
+              "state": "expanded",
               "elements": [
                 {
                   "type": "panel",
@@ -3228,10 +3271,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
       const survey = new Survey.Model(surveyJSON);
-const storageItemKey = "step-4-survey";
 
-
-        //Added Save function above this
       // Apply the custom theme to the survey instance
       survey.applyTheme(themeJson);
       console.log("Theme applied");
@@ -3272,7 +3312,25 @@ const storageItemKey = "step-4-survey";
             questionElement.innerHTML = "";
             questionElement.appendChild(surveyRow);
         });
-        
+        // Save survey results to the local storage
+        survey.onValueChanged.add(saveSurveyData);
+        survey.onCurrentPageChanged.add(saveSurveyData);
+
+        // Restore survey results
+        const prevData = window.localStorage.getItem(storageItemKey) || null;
+        if (prevData) {
+            const data = JSON.parse(prevData);
+            survey.data = data;
+            if (data.pageNo) {
+                survey.currentPageNo = data.pageNo;
+            }
+        }
+
+        // Log survey results and empty the local storage after the survey is completed
+        survey.onComplete.add((sender) => {
+            console.log(JSON.stringify(sender.data, null, 3));
+            window.localStorage.setItem(storageItemKey, "");
+        });
        
 
       survey.render("surveyContainer");

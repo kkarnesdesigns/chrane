@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
                   "type": "ranking",
                   "name": "LineFlow",
                   "title": "Place the service types in the correct order of flow for this service line:",
+                  choices: [],
                   "isRequired": true,
                   "selectToRankEnabled": true,
                   "selectToRankAreasLayout": "vertical"

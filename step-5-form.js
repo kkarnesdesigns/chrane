@@ -133,9 +133,18 @@ document.addEventListener("DOMContentLoaded", function() {
               "isRequired": true
             },
             {
+              "type": "file",
+              "name": "ElectricalMap",
+              "title": "If an Electrical Map is available, upload a photo of it here",
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "sourceType": "file-camera"
+            },
+            {
               "type": "paneldynamic",
               "name": "electricalPanels",
               "title": "Electrical Panel",
+              "isRequired": true,
               "templateElements": [
                 {
                   "type": "text",
@@ -173,7 +182,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Load Center",
                     "Interconnect Box with Daisy Chain",
                     "Individual Module Electrical Connections"
-                  ]
+                  ],
+                  "showNoneItem": true,
+                  "noneText": "N/A"
                 },
                 {
                   "type": "radiogroup",
@@ -184,7 +195,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Floor",
                     "Building Wall",
                     "Overhead via UL Riser"
-                  ]
+                  ],
+                  "showNoneItem": true,
+                  "noneText": "N/A"
+                },
+                {
+                  "type": "text",
+                  "name": "CeilingHeightOverheadULRiser",
+                  "visibleIf": "{electricalPanels[0].newElectricalServiceSource} = 'Overhead via UL Riser'",
+                  "title": "Ceiling Height for Overhead UL Riser",
+                  "requiredIf": "{electricalPanels[0].newElectricalServiceSource} = 'Overhead via UL Riser'"
                 },
                 {
                   "type": "radiogroup",
@@ -202,6 +222,14 @@ document.addEventListener("DOMContentLoaded", function() {
                   "visibleIf": "{existingElectricalUsage} = 'Yes'",
                   "title": "Existing Electrical Lines",
                   "templateElements": [
+                    {
+                      "type": "file",
+                      "name": "ExistingElectricalPhotos",
+                      "title": "Share photos of the existing electrical",
+                      "allowMultiple": true,
+                      "waitForUpload": true,
+                      "sourceType": "file-camera"
+                    },
                     {
                       "type": "dropdown",
                       "name": "voltagePhase",
@@ -417,6 +445,13 @@ document.addEventListener("DOMContentLoaded", function() {
               ]
             },
             {
+              "type": "comment",
+              "name": "AdditionalNotesforWaterless",
+              "visibleIf": "{waterlessProject} = 'Yes'",
+              "title": "Additional Notes for Waterless",
+              "requiredIf": "{waterlessProject} = 'Yes'"
+            },
+            {
               "type": "file",
               "name": "waterPhotos",
               "title": "Include Pictures of Water Stub Ups & Drains",
@@ -454,10 +489,10 @@ document.addEventListener("DOMContentLoaded", function() {
           ]
         },
         {
-          "type": "text",
+          "type": "comment",
           "name": "overheadComponentsDetails",
           "visibleIf": "{overheadComponents} = 'Yes'",
-          "title": "Details:",
+          "title": "Add Details on Overhead Components:",
           "isRequired": true
         },
         {
@@ -597,14 +632,14 @@ document.addEventListener("DOMContentLoaded", function() {
           "name": "elevatorModuleSize",
           "visibleIf": "{elevatorRequired} = 'Yes'",
           "title": "Maximum module size to fit in elevator",
-          "isRequired": true
+          "requiredIf": "{elevatorRequired} = 'Yes'"
         },
         {
           "type": "file",
           "name": "elevatorPhotos",
           "visibleIf": "{elevatorRequired} = 'Yes'",
           "title": "Include Pictures",
-          "isRequired": true,
+          "requiredIf": "{elevatorRequired} = 'Yes'",
           "allowMultiple": true,
           "waitForUpload": true,
           "sourceType": "file-camera"
@@ -636,8 +671,12 @@ document.addEventListener("DOMContentLoaded", function() {
           "choices": [
             "Import Hand-Drawn Room Layout with Measurements?",
             {
-              "value": "Use Matterport 2 to Scan Room",
+              "value": "Use Matterport to Scan Room",
               "text": "Use Matterport to Scan Room"
+            },
+            {
+              "value": "Use Matterport to Scan Room AND create CAD drawings",
+              "text": "Use Matterport to Scan Room AND create CAD drawings"
             }
           ]
         },
@@ -663,7 +702,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       ]
     }
-  ]
+  ],
+  "showQuestionNumbers": "off",
+  "clearInvisibleValues": "onHiddenContainer"
 }
       const survey = new Survey.Model(surveyJSON);
 

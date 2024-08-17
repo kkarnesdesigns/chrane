@@ -670,14 +670,8 @@ document.addEventListener("DOMContentLoaded", function() {
           "isRequired": true,
           "choices": [
             "Import Hand-Drawn Room Layout with Measurements?",
-            {
-              "value": "Use Matterport to Scan Room",
-              "text": "Use Matterport to Scan Room"
-            },
-            {
-              "value": "Use Matterport to Scan Room AND create CAD drawings",
-              "text": "Use Matterport to Scan Room AND create CAD drawings"
-            }
+            "Use Matterport to Scan Room",
+            "Use Matterport to Scan Room AND create CAD drawings"
           ]
         },
         {
@@ -694,10 +688,10 @@ document.addEventListener("DOMContentLoaded", function() {
         {
           "type": "text",
           "name": "question2",
-          "visibleIf": "{importRoomLayout} allof ['Use Matterport 2 to Scan Room']",
+          "visibleIf": "{importRoomLayout} allof ['Use Matterport to Scan Room']",
           "title": "Matterport Preview Link",
           "isRequired": true,
-          "requiredIf": "{importRoomLayout} allof ['Use Matterport 2 to Scan Room']",
+          "requiredIf": "{importRoomLayout} allof ['Use Matterport to Scan Room']",
           "inputType": "url"
         }
       ]

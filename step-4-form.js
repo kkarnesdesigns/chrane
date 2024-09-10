@@ -3634,9 +3634,14 @@ async function initializeSurvey() {
         survey.onValueChanging.add(function(sender, options) {
           console.log("Value changing: ", options.name, options.value);
         });
-
+  
+        
         survey.onAfterRenderQuestion.add(function (survey, options) {
           var questionElement = options.htmlElement;
+          // Skip applying the custom layout for questions within dynamic panels
+            if (options.question.isContentElement || options.question.getType() === "paneldynamic") {
+                return;
+            }
           var surveyRow = document.createElement("div");
           surveyRow.className = "survey-row";
 

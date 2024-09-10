@@ -3631,7 +3631,7 @@ async function initializeSurvey() {
           }
         });
 
-                // Handle dynamic panel duplication for Uploadcare widgets
+        // Handle dynamic panel duplication for Uploadcare widgets
         survey.onDynamicPanelAdded.add(function (survey, options) {
           const panel = options.panel;
           const panelIndex = options.panelIndex;
@@ -3652,9 +3652,28 @@ async function initializeSurvey() {
           });
         });
 
+        // Handle after rendering the panel to make sure widgets are initialized properly
+        survey.onAfterRenderPanel.add(function (survey, options) {
+          const panel = options.panel;
+          const panelIndex = options.panelIndex;
+
+          panel.elements.forEach(function (question) {
+            if (question.name.startsWith('photo')) {
+              const widgetSelector = `#uploadcare-${question.name}-${panelIndex + 1}`;
+              handleUploadcareField(widgetSelector, `${question.name}-${panelIndex + 1}`);
+            }
+          });
+        });
+
         // Reinitialize Uploadcare widget after duplication
         function handleUploadcareField(widgetId, questionName) {
           const widgetElement = document.getElementById(widgetId);
+
+          if (!widgetElement) {
+            console.error(`Widget element with ID ${widgetId} not found.`);
+            return;
+          }
+
           if (!widgetElement.dataset.initialized) {
             const widget = uploadcare.Widget(widgetElement);
 

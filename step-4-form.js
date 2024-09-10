@@ -1,17 +1,138 @@
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof Survey !== 'undefined') {
-      console.log("SurveyJS is loaded");
+  document.addEventListener("DOMContentLoaded", function() {
+    const supabaseUrl = "https://eshdjwklgbouztqfahbm.supabase.co";
+    const supabaseApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzaGRqd2tsZ2JvdXp0cWZhaGJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI2MDY1NzcsImV4cCI6MjAzODE4MjU3N30.y_kk8qgsBvccijGU-gIIxfTgFU9Y7ggORw6mvMd07zY";
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseApiKey);
+    const storageItemKey = "step-4-form";
+    const uploadcareFields = {};
+    const table = "step-4-component-details";
 
-        const storageItemKey = "step-4-form";
+async function restoreSurveyData(survey, opportunityId) {
+  const ENDPOINT_URL = `${supabaseUrl}/rest/v1/${table}?opportunity_id=eq.${opportunityId}`;
 
-        function saveSurveyData (survey) {
-            const data = survey.data;
-            data.pageNo = survey.currentPageNo;
-            window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+  try {
+    const response = await fetch(ENDPOINT_URL, {
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": supabaseApiKey,
+        "Authorization": `Bearer ${supabaseApiKey}`
+      }
+    });
+
+    if (!response.ok) {
+      console.error("Network response was not ok", response.statusText);
+      return;
+    }
+
+    const prevData = await response.json();
+    if (prevData && prevData.length > 0) {
+      const data = prevData[0];
+      survey.data = data;
+
+      // Dynamically load data into Uploadcare widgets
+      Object.keys(data).forEach(key => {
+        if (key.startsWith('photo') || key.startsWith('uploadcare')) {
+          loadUploadcareWidgetData(`#uploadcare-${key}`, data[key]);
+        }
+      });
+
+      if (data.pageNo) {
+        survey.currentPageNo = data.pageNo;
+      }
+    } else {
+      console.error("No matching data found for the given opportunity_id.");
+    }
+  } catch (error) {
+    console.error("Error restoring survey data:", error);
+  }
+}
+
+    function loadUploadcareWidgetData(widgetSelector, value) {
+  if (value) {
+    const widget = uploadcare.Widget(widgetSelector);
+    widget.value(value);
+    const questionName = widgetSelector.replace('#uploadcare-', '');
+    uploadcareFields[questionName] = value;
+  }
+}
+
+    function saveToLocalCache(survey) {
+      const data = survey.data;
+      data.pageNo = survey.currentPageNo;
+      window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+      console.log("Data saved to local cache:", data);
+    }
+
+    function isOnline() {
+      return navigator.onLine;
+    }
+
+    async function syncWithSupabase(survey) {
+      const surveyData = survey.data;
+      const opportunityId = surveyData.opportunity_id;
+      const endpoint = `${supabaseUrl}/rest/v1/${table}`;
+
+      try {
+        const { data: existingRecord, error } = await supabaseClient
+          .from(table)
+          .select("*")
+          .eq("opportunity_id", opportunityId)
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          throw error;
         }
 
-      // Custom theme JSON
-        const themeJson = {
+        let response;
+
+        if (existingRecord) {
+          const updateUrl = `${endpoint}?opportunity_id=eq.${opportunityId}`;
+          response = await axios.patch(updateUrl, surveyData, {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "apikey": supabaseApiKey,
+              "Authorization": `Bearer ${supabaseApiKey}`,
+              "Prefer": "return=minimal"
+            }
+          });
+        } else {
+          response = await axios.post(endpoint, surveyData, {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "apikey": supabaseApiKey,
+              "Authorization": `Bearer ${supabaseApiKey}`,
+              "Prefer": "return=minimal"
+            }
+          });
+        }
+
+        if (response.status === 201 || response.status === 204) {
+          console.log("Successfully submitted data to Supabase");
+          window.localStorage.removeItem(storageItemKey);
+        } else {
+          console.error("Unexpected response status:", response.status);
+          alert("There was an issue submitting the survey.");
+        }
+      } catch (error) {
+        console.error("Error submitting survey data to Supabase:", error.response ? error.response.data : error.message);
+        alert("There was an error submitting the survey.");
+      }
+    }
+
+    function tryToSyncIfOnline(survey) {
+      if (isOnline()) {
+        const localData = window.localStorage.getItem(storageItemKey);
+        if (localData) {
+          survey.data = JSON.parse(localData);
+          syncWithSupabase(survey);
+        }
+      }
+    }
+
+async function initializeSurvey() {
+  if (typeof Survey !== 'undefined') {
+      const themeJson = {
         "themeName": "custom",
         "colorPalette": "light",
         "isPanelless": true,
@@ -23,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "--sjs-editorpanel-backcolor": "rgba(255, 255, 255, 1)",
           "--sjs-editorpanel-cornerRadius": "10px",
           "--sjs-corner-radius": "4px",
-          "--sjs-base-unit": "6px",
+          "--sjs-base-unit": "8px",
           "--sjs-shadow-small": "0px 1px 2px 0px rgba(0, 0, 0, 0.15)",
           "--sjs-shadow-inner": "0px 0px 0px 1px rgba(208, 213, 221, 1)",
           "--sjs-border-default": "rgba(0, 0, 0, 0.16)",
@@ -195,6 +316,19 @@ document.addEventListener("DOMContentLoaded", function() {
               "waitForUpload": true,
               "sourceType": "file-camera"
             },
+              {
+          "type": "html",
+          "name": "photoFlowSketch-widget",
+          "html": "<input id='uploadcare-photoFlowSketch' type='hidden' data-public-key='8f98dcc6a647d769d146' data-multiple='true' />",
+          "title": "Upload a sketch of the serving line flow"
+        },
+        {
+          "type": "text",
+          "name": "photoFlowSketch",
+          "visible": false,
+          "readOnly": true,
+          "title": " "
+        },
             {
               "type": "boolean",
               "name": "Serving_Line_Mirror",
@@ -3442,72 +3576,166 @@ document.addEventListener("DOMContentLoaded", function() {
   "gridLayoutEnabled": true
 }
 
-      const survey = new Survey.Model(surveyJSON);
+        window.UPLOADCARE_PUBLIC_KEY = '8f98dcc6a647d769d146';
 
-      // Apply the custom theme to the survey instance
-      survey.applyTheme(themeJson);
-      console.log("Theme applied");
+        const survey = new Survey.Model(surveyJSON);
 
-  survey.onAfterRenderQuestion.add(function (survey, options) {
-            var questionElement = options.htmlElement;
+        survey.applyTheme(themeJson);
 
-            // Skip applying the custom layout for questions within dynamic panels
-            if (options.question.isContentElement || options.question.getType() === "paneldynamic") {
-                return;
-            }
+        survey.onAfterRenderQuestion.add(function (survey, options) {
+          const element = options.htmlElement.querySelector(`[id^=uploadcare-]`);
+          if (element) {
+            const widgetId = element.id;
+            const questionName = widgetId.replace('uploadcare-', '');
+            handleUploadcareField(widgetId, questionName);
+          }
+        });
 
-            // Create a new container for the custom layout
-            var surveyRow = document.createElement("div");
-            surveyRow.className = "survey-row";
+        function handleUploadcareField(widgetId, questionName) {
+          const widgetElement = document.getElementById(widgetId);
 
-            // Create the title and input elements
-            var questionTitle = document.createElement("div");
-            questionTitle.className = "question-title";
-            questionTitle.innerHTML = options.question.title;
+          // Check if the widget has already been initialized to prevent duplicate buttons
+          if (!widgetElement.dataset.initialized) {
+            const widget = uploadcare.Widget(widgetElement);
 
-            var questionInput = document.createElement("div");
-            questionInput.className = "question-input";
+            widget.onUploadComplete(function(info) {
+              uploadcareFields[questionName] = info.cdnUrl;
+              survey.setValue(questionName, info.cdnUrl);
 
-            // Move the existing input element to the question input div
-            var children = Array.from(questionElement.childNodes);
-            children.forEach(function(child) {
-                if (child && child.nodeType === 1 && !child.classList.contains('sv_q_title') && !child.classList.contains('sd-question__header')) {
-                    questionInput.appendChild(child);
-                }
+              const field = survey.getQuestionByName(questionName);
+              if (field) {
+                field.visible = true;
+              } else {
+                console.error(`Field not found for ${questionName}`);
+              }
             });
 
-            // Append title and input to the row
-            surveyRow.appendChild(questionTitle);
-            surveyRow.appendChild(questionInput);
-
-            // Clear the question element and append the custom row
-            questionElement.innerHTML = "";
-            questionElement.appendChild(surveyRow);
-        });
-
-        // Save survey results to the local storage
-        survey.onValueChanged.add(saveSurveyData);
-        survey.onCurrentPageChanged.add(saveSurveyData);
-
-        // Restore survey results
-        const prevData = window.localStorage.getItem(storageItemKey) || null;
-        if (prevData) {
-            const data = JSON.parse(prevData);
-            survey.data = data;
-            if (data.pageNo) {
-                survey.currentPageNo = data.pageNo;
-            }
+            widgetElement.dataset.initialized = true; // Mark this widget as initialized
+          }
         }
 
-        // Log survey results and empty the local storage after the survey is completed
-        survey.onComplete.add((sender) => {
-            console.log(JSON.stringify(sender.data, null, 3));
-            window.localStorage.setItem(storageItemKey, "");
+        survey.onCompleting.add(function(sender, options) {
+          for (const fieldName in uploadcareFields) {
+            sender.setValue(fieldName, uploadcareFields[fieldName]);
+          }
+
+          const opportunityId = sender.data.opportunity_id;
+          if (!opportunityId) {
+            alert("Opportunity ID is missing.");
+            options.allowComplete = false;
+          }
         });
 
+        survey.onValueChanging.add(function(sender, options) {
+          console.log("Value changing: ", options.name, options.value);
+        });
 
-      survey.render("surveyContainer");
-    } else {
-      console.error("SurveyJS is not loaded");
+        survey.onAfterRenderQuestion.add(function (survey, options) {
+          var questionElement = options.htmlElement;
+          var surveyRow = document.createElement("div");
+          surveyRow.className = "survey-row";
+
+          var questionTitle = document.createElement("div");
+          questionTitle.className = "question-title";
+          questionTitle.innerHTML = options.question.title;
+
+          var questionInput = document.createElement("div");
+          questionInput.className = "question-input";
+
+          var children = Array.from(questionElement.childNodes);
+          children.forEach(function(child) {
+            if (child && child.nodeType === 1 && !child.classList.contains('sv_q_title') && !child.classList.contains('sd-question__header')) {
+              questionInput.appendChild(child);
+            }
+          });
+
+          surveyRow.appendChild(questionTitle);
+          surveyRow.appendChild(questionInput);
+
+          questionElement.innerHTML = "";
+          questionElement.appendChild(surveyRow);
+        });
+
+        survey.onValueChanged.add(function(survey) {
+          saveToLocalCache(survey);
+          if (isOnline()) {
+            syncWithSupabase(survey);
+          }
+        });
+
+        survey.onCurrentPageChanged.add(function(survey) {
+          saveToLocalCache(survey);
+        });
+
+        survey.onValueChanged.add(async function (sender) {
+          const surveyData = sender.data;
+          const opportunityId = surveyData.opportunity_id;
+          const table = "step-4-component-details";
+          const endpoint = `${supabaseUrl}/rest/v1/${table}`;
+
+          try {
+            const { data: existingRecord, error } = await supabaseClient
+              .from(table)
+              .select("*")
+              .eq("opportunity_id", opportunityId)
+              .single();
+
+            if (error && error.code !== 'PGRST116') {
+              throw error;
+            }
+
+            let response;
+
+            if (existingRecord) {
+              const updateUrl = `${endpoint}?opportunity_id=eq.${opportunityId}`;
+              response = await axios.patch(updateUrl, surveyData, {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "apikey": supabaseApiKey,
+                  "Authorization": `Bearer ${supabaseApiKey}`,
+                  "Prefer": "return=minimal"
+                }
+              });
+            } else {
+              response = await axios.post(endpoint, surveyData, {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "apikey": supabaseApiKey,
+                  "Authorization": `Bearer ${supabaseApiKey}`,
+                  "Prefer": "return=minimal"
+                }
+              });
+            }
+
+            if (response.status === 201 || response.status === 204) {
+              console.log("Successfully submitted data to Supabase");
+            } else {
+              console.error("Unexpected response status:", response.status);
+              alert("There was an issue submitting the survey.");
+            }
+          } catch (error) {
+            console.error("Error submitting survey data to Supabase:", error.response ? error.response.data : error.message);
+            alert("There was an error submitting the survey.");
+          }
+        });
+
+        survey.render("surveyContainer");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const opportunityId = urlParams.get('opportunity_id');
+        if (opportunityId) {
+          survey.data = { opportunity_id: opportunityId };
+          await restoreSurveyData(survey, opportunityId);
+        }
+
+        tryToSyncIfOnline(survey);
+        window.addEventListener('online', () => tryToSyncIfOnline(survey));
+      } else {
+        console.error("SurveyJS is not loaded");
+      }
     }
+
+    initializeSurvey();
   });

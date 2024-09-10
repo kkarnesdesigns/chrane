@@ -245,6 +245,20 @@ async function initializeSurvey() {
       "name": "ServingLineIntakeForm",
       "elements": [
         {
+                "type": "text",
+                "name": "opportunity_id",
+                "visible": true,
+                "isRequired": true,
+                "readOnly": true
+              },
+              {
+                "type": "text",
+                "name": "OpportunityName",
+                "title": "Opportunity Name:",
+                "isRequired": true,
+                "readOnly": true,
+              },
+        {
           "type": "paneldynamic",
           "name": "ServingLineDetails",
           "title": "Complete serving line details below.",

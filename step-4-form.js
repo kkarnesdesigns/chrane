@@ -3631,6 +3631,49 @@ async function initializeSurvey() {
           }
         });
 
+                // Handle dynamic panel duplication for Uploadcare widgets
+        survey.onDynamicPanelAdded.add(function (survey, options) {
+          const panel = options.panel;
+          const panelIndex = options.panelIndex;
+
+          panel.elements.forEach(function (question) {
+            if (question.name.startsWith('photo')) {
+              const newName = `${question.name}-${panelIndex + 1}`;
+              question.name = newName;
+
+              const hiddenField = survey.getQuestionByName(`uploadcare-${question.name}`);
+              if (hiddenField) {
+                hiddenField.name = `uploadcare-${newName}`;
+              }
+
+              const widgetSelector = `#uploadcare-${newName}`;
+              handleUploadcareField(widgetSelector, newName);
+            }
+          });
+        });
+
+        // Reinitialize Uploadcare widget after duplication
+        function handleUploadcareField(widgetId, questionName) {
+          const widgetElement = document.getElementById(widgetId);
+          if (!widgetElement.dataset.initialized) {
+            const widget = uploadcare.Widget(widgetElement);
+
+            widget.onUploadComplete(function (info) {
+              uploadcareFields[questionName] = info.cdnUrl;
+              survey.setValue(questionName, info.cdnUrl);
+
+              const field = survey.getQuestionByName(questionName);
+              if (field) {
+                field.visible = true;
+              } else {
+                console.error(`Field not found for ${questionName}`);
+              }
+            });
+
+            widgetElement.dataset.initialized = true;
+          }
+        }
+    
         survey.onValueChanging.add(function(sender, options) {
           console.log("Value changing: ", options.name, options.value);
         });

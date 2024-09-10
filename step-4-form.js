@@ -3640,25 +3640,24 @@ async function initializeSurvey() {
             return;
           }
 
-          // Clear any existing widget initialization
-          uploadcare.Widget(widgetElement).reset();
+          // Prevent redundant initialization
+          if (!widgetElement.dataset.initialized) {
+            const widget = uploadcare.Widget(widgetElement);
 
-          // Initialize the widget
-          const widget = uploadcare.Widget(widgetElement);
+            widget.onUploadComplete(function (info) {
+              uploadcareFields[questionName] = info.cdnUrl;
+              survey.setValue(questionName, info.cdnUrl);
 
-          widget.onUploadComplete(function (info) {
-            uploadcareFields[questionName] = info.cdnUrl;
-            survey.setValue(questionName, info.cdnUrl);
+              const field = survey.getQuestionByName(questionName);
+              if (field) {
+                field.visible = true;
+              } else {
+                console.error(`Field not found for ${questionName}`);
+              }
+            });
 
-            const field = survey.getQuestionByName(questionName);
-            if (field) {
-              field.visible = true;
-            } else {
-              console.error(`Field not found for ${questionName}`);
-            }
-          });
-
-          widgetElement.dataset.initialized = true;
+            widgetElement.dataset.initialized = true; // Mark this widget as initialized
+          }
         }
 
         // Handle dynamic panel duplication for Uploadcare widgets

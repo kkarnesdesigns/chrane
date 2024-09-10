@@ -3692,6 +3692,23 @@ async function initializeSurvey() {
             widgetElement.dataset.initialized = true;
           }
         }
+
+        // Ensure Uploadcare widgets are re-rendered every time a page/panel is shown
+        survey.onCurrentPageChanged.add(function(survey) {
+          const currentPage = survey.currentPage;
+          currentPage.elements.forEach(function (panel) {
+            if (panel.getType() === 'paneldynamic') {
+              panel.panels.forEach(function (dynamicPanel) {
+                dynamicPanel.elements.forEach(function (question) {
+                  if (question.name.startsWith('photo')) {
+                    const widgetSelector = `#uploadcare-${question.name}`;
+                    handleUploadcareField(widgetSelector, question.name);
+                  }
+                });
+              });
+            }
+          });
+        });
     
         survey.onValueChanging.add(function(sender, options) {
           console.log("Value changing: ", options.name, options.value);

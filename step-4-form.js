@@ -3631,10 +3631,40 @@ async function initializeSurvey() {
           }
         });
 
+        // Reinitialize Uploadcare widget after duplication and when switching panels
+        function handleUploadcareField(widgetId, questionName) {
+          const widgetElement = document.getElementById(widgetId);
+
+          if (!widgetElement) {
+            console.error(`Widget element with ID ${widgetId} not found.`);
+            return;
+          }
+
+          // Clear any existing widget initialization
+          uploadcare.Widget(widgetElement).reset();
+
+          // Initialize the widget
+          const widget = uploadcare.Widget(widgetElement);
+
+          widget.onUploadComplete(function (info) {
+            uploadcareFields[questionName] = info.cdnUrl;
+            survey.setValue(questionName, info.cdnUrl);
+
+            const field = survey.getQuestionByName(questionName);
+            if (field) {
+              field.visible = true;
+            } else {
+              console.error(`Field not found for ${questionName}`);
+            }
+          });
+
+          widgetElement.dataset.initialized = true;
+        }
+
         // Handle dynamic panel duplication for Uploadcare widgets
         survey.onDynamicPanelAdded.add(function (survey, options) {
           const panel = options.panel;
-          const panelIndex = survey.getAllPanels().indexOf(panel); // Get the actual panel index
+          const panelIndex = survey.getAllPanels().indexOf(panel);
 
           panel.elements.forEach(function (question) {
             if (question.name.startsWith('photo')) {
@@ -3664,34 +3694,6 @@ async function initializeSurvey() {
             }
           });
         });
-
-        // Reinitialize Uploadcare widget after duplication
-        function handleUploadcareField(widgetId, questionName) {
-          const widgetElement = document.getElementById(widgetId);
-
-          if (!widgetElement) {
-            console.error(`Widget element with ID ${widgetId} not found.`);
-            return;
-          }
-
-          if (!widgetElement.dataset.initialized) {
-            const widget = uploadcare.Widget(widgetElement);
-
-            widget.onUploadComplete(function (info) {
-              uploadcareFields[questionName] = info.cdnUrl;
-              survey.setValue(questionName, info.cdnUrl);
-
-              const field = survey.getQuestionByName(questionName);
-              if (field) {
-                field.visible = true;
-              } else {
-                console.error(`Field not found for ${questionName}`);
-              }
-            });
-
-            widgetElement.dataset.initialized = true;
-          }
-        }
 
         // Ensure Uploadcare widgets are re-rendered every time a page/panel is shown
         survey.onCurrentPageChanged.add(function(survey) {

@@ -3634,7 +3634,7 @@ async function initializeSurvey() {
         // Handle dynamic panel duplication for Uploadcare widgets
         survey.onDynamicPanelAdded.add(function (survey, options) {
           const panel = options.panel;
-          const panelIndex = options.panelIndex;
+          const panelIndex = survey.getAllPanels().indexOf(panel); // Get the actual panel index
 
           panel.elements.forEach(function (question) {
             if (question.name.startsWith('photo')) {
@@ -3655,7 +3655,7 @@ async function initializeSurvey() {
         // Handle after rendering the panel to make sure widgets are initialized properly
         survey.onAfterRenderPanel.add(function (survey, options) {
           const panel = options.panel;
-          const panelIndex = options.panelIndex;
+          const panelIndex = survey.getAllPanels().indexOf(panel);
 
           panel.elements.forEach(function (question) {
             if (question.name.startsWith('photo')) {

@@ -322,18 +322,14 @@ async function initializeSurvey() {
               "selectToRankAreasLayout": "vertical"
             },
               {
-          "type": "html",
-          "name": "photoFlowSketch-widget",
-          "html": "<input id='uploadcare-photoFlowSketch' type='hidden' data-public-key='8f98dcc6a647d769d146' data-multiple='true' />",
-          "title": "Upload a sketch of the serving line flow"
-        },
-        {
-          "type": "text",
-          "name": "photoFlowSketch",
-          "visible": false,
-          "readOnly": true,
-          "title": " "
-        },
+              "type": "file",
+              "name": "Flow_Sketch",
+              "startWithNewLine": false,
+              "title": "Upload a sketch of the serving line flow",
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "sourceType": "file-camera"
+            },
             {
               "type": "boolean",
               "name": "Serving_Line_Mirror",
@@ -341,7 +337,7 @@ async function initializeSurvey() {
             },
             {
               "type": "text",
-              "name": "question2",
+              "name": "LineMirrorName",
               "visibleIf": "{ServingLineDetails[0].Serving_Line_Mirror} = true",
               "startWithNewLine": false,
               "title": "Please add the name of the line that this is a mirror of:",
@@ -3629,95 +3625,6 @@ async function initializeSurvey() {
             alert("Opportunity ID is missing.");
             options.allowComplete = false;
           }
-        });
-
-        // Handle dynamic panel duplication for Uploadcare widgets
-        survey.onDynamicPanelAdded.add(function (survey, options) {
-          const panel = options.panel;
-          const panelIndex = survey.getAllPanels().indexOf(panel);
-
-          // Loop through panel elements and modify the IDs of Uploadcare widgets
-          panel.elements.forEach(function (question) {
-            if (question.name.startsWith('photo')) {
-              const newName = `${question.name}-${panelIndex + 1}`;
-              question.name = newName;
-
-              // Update the HTML ID of the Uploadcare widget
-              const widgetElement = document.getElementById(`uploadcare-${question.name}`);
-              if (widgetElement) {
-                widgetElement.id = `uploadcare-${newName}`; // Change the ID dynamically
-                handleUploadcareField(`#uploadcare-${newName}`, newName);
-              }
-
-              const hiddenField = survey.getQuestionByName(`uploadcare-${question.name}`);
-              if (hiddenField) {
-                hiddenField.name = `uploadcare-${newName}`;
-              }
-            }
-          });
-        });
-
-        // Handle reinitialization of widgets when switching panels
-        survey.onAfterRenderPanel.add(function (survey, options) {
-          const panel = options.panel;
-          const panelIndex = survey.getAllPanels().indexOf(panel);
-
-          panel.elements.forEach(function (question) {
-            if (question.name.startsWith('photo')) {
-              const widgetElement = document.getElementById(`uploadcare-${question.name}-${panelIndex + 1}`);
-              if (widgetElement) {
-                handleUploadcareField(`#uploadcare-${question.name}-${panelIndex + 1}`, `${question.name}-${panelIndex + 1}`);
-              }
-            }
-          });
-        });
-
-        // Reinitialize Uploadcare widget after duplication or panel switch
-        function handleUploadcareField(widgetSelector, questionName) {
-          const widgetElement = document.querySelector(widgetSelector);
-
-          if (!widgetElement) {
-            console.error(`Widget element with selector ${widgetSelector} not found.`);
-            return;
-          }
-
-          // Prevent redundant initialization
-          if (!widgetElement.dataset.initialized) {
-            const widget = uploadcare.Widget(widgetElement);
-
-            widget.onUploadComplete(function (info) {
-              uploadcareFields[questionName] = info.cdnUrl;
-              survey.setValue(questionName, info.cdnUrl);
-
-              const field = survey.getQuestionByName(questionName);
-              if (field) {
-                field.visible = true;
-              } else {
-                console.error(`Field not found for ${questionName}`);
-              }
-            });
-
-            widgetElement.dataset.initialized = true; // Mark this widget as initialized
-          }
-        }
-
-        // Ensure Uploadcare widgets are re-rendered every time a page/panel is shown
-        survey.onCurrentPageChanged.add(function(survey) {
-          const currentPage = survey.currentPage;
-          currentPage.elements.forEach(function (panel) {
-            if (panel.getType() === 'paneldynamic') {
-              panel.panels.forEach(function (dynamicPanel) {
-                dynamicPanel.elements.forEach(function (question) {
-                  if (question.name.startsWith('photo')) {
-                    const widgetElement = document.getElementById(`uploadcare-${question.name}`);
-                    if (widgetElement) {
-                      handleUploadcareField(`#uploadcare-${question.name}`, question.name);
-                    }
-                  }
-                });
-              });
-            }
-          });
         });
     
         survey.onValueChanging.add(function(sender, options) {

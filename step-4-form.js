@@ -307,15 +307,6 @@ async function initializeSurvey() {
               "selectToRankEnabled": true,
               "selectToRankAreasLayout": "vertical"
             },
-            {
-              "type": "file",
-              "name": "Flow_Sketch",
-              "startWithNewLine": false,
-              "title": "Upload a sketch of the serving line flow",
-              "allowMultiple": true,
-              "waitForUpload": true,
-              "sourceType": "file-camera"
-            },
               {
           "type": "html",
           "name": "photoFlowSketch-widget",
